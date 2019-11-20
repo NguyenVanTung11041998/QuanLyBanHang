@@ -27,7 +27,7 @@
     <div class="card card-login mx-auto mt-5">
       <div class="card-header">Login</div>
       <div class="card-body">
-        <form action="" method="POST">
+        <form action="/QuanLyBanHang/LoginServlet" method="POST">
           <div class="form-group">
             <div class="form-label-group">
               <input type="text" id="txtTaiKhoan" name="txtTaiKhoan" class="form-control" placeholder="Email address" required="required" autofocus="autofocus" value="">

@@ -42,8 +42,8 @@ public class LoginServlet extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         request.setCharacterEncoding("utf-8");
-        String taiKhoan = request.getParameter("txtEmail");
-        String matKhau = request.getParameter("txtPassword");
+        String taiKhoan = request.getParameter("txtTaiKhoan");
+        String matKhau = request.getParameter("txtMatKhau");
         AccountAdmin accountAdmin = AccountAdminDAO.getInstance().Login(taiKhoan, matKhau);
         PrintWriter out = response.getWriter();
         if(accountAdmin != null)
