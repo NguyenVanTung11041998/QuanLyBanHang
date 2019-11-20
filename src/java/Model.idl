@@ -1,0 +1,220 @@
+module DTO
+{
+    struct AccountAdmin
+    {
+        long id;
+        string taiKhoan;
+        string matKhau;
+    };
+    
+    struct NhaSanXuat
+    {
+        long maNSX;
+        string tenNSX;
+        string thongTin;
+        string logo;
+    };
+
+    struct NhaCungCap
+    {
+        long maNCC;
+        string tenNCC;
+        string diaChi;
+        string soDT;
+        string email;
+    };
+
+    struct DanhMuc
+    {
+        long maDanhMuc;
+        string tenDanhMuc;
+    };
+    
+    struct LoaiSanPham
+    {
+        long maLoaiSP;
+        string tenLoai;
+        long maDanhMuc;
+    };
+
+    struct SanPham
+    {
+        long maSP;
+        string tenSP;
+        float donGia;
+        string ngayCapNhat;
+        string moTa;
+        string hinhAnh;
+        long soLuongTon;
+        long maNCC;
+        long maNSX;
+        long maLoaiSP;
+        boolean trangThai;
+    };
+    
+    struct KhachHang
+    {
+        long id;
+        string email;
+        string matKhau;
+        string hoTen;
+        string diaChi;
+        string soDT;
+    };
+
+    struct HoaDon
+    {
+        long maHD;
+        string ngayDat;
+        long idKhachHang;
+        float tongTien;
+        boolean daThanhToan;
+    };
+
+    struct HoaDonChiTiet
+    {
+        long maHD;
+        long maSP;
+        long soLuongMua;
+        float donGia;
+    };
+
+    struct PhieuNhap
+    {
+        long maPN;
+        string ngayNhap;
+        float tongTienNhap;
+    };
+
+    struct PhieuNhapChiTiet
+    {
+        long maPN;
+        long maSP;
+        long soLuongNhap;
+        float donGiaNhap;
+    };
+
+    struct GioHang
+    {
+        long id;
+        long idKhachHang;
+        long maSP;
+        long soLuongDat;
+        boolean trangThai;
+    };
+};
+
+module Corba_DAO
+{
+    typedef sequence<DTO::HoaDon> HoaDons;
+    typedef sequence<DTO::DanhMuc> DanhMucDAOs;
+    typedef sequence<DTO::HoaDonChiTiet> HoaDonChiTiets;
+    typedef sequence<DTO::KhachHang> KhachHangs;
+    typedef sequence<DTO::LoaiSanPham> LoaiSanPhams;
+    typedef sequence<DTO::NhaCungCap> NhaCungCaps;
+    typedef sequence<DTO::NhaSanXuat> NhaSanXuats;
+    typedef sequence<DTO::PhieuNhap> PhieuNhaps;
+    typedef sequence<DTO::PhieuNhapChiTiet> PhieuNhapChiTiets;
+    typedef sequence<DTO::SanPham> SanPhams;
+    typedef sequence<DTO::GioHang> GioHangs;
+
+    interface IAccountAdminDAO
+    {
+        DTO::AccountAdmin Login(in string taiKhoan, in string matKhau);
+    };
+
+    interface IDanhMucDAO
+    {
+        DanhMucDAOs LayDanhSach();
+        boolean Create(in DTO::DanhMuc x);
+        boolean Update(in DTO::DanhMuc x);
+        boolean Delete(in long id);
+        DTO::DanhMuc TimKiem(in string search);
+    };
+
+    interface IHoaDonChiTietDAO
+    {
+        HoaDonChiTiets LayDanhSachHoaDonChiTiet(in long idHoaDon);
+    };
+    
+    interface IHoaDonDAO
+    {
+        HoaDons LayDanhSach();
+        boolean Create(in DTO::HoaDon x);
+        boolean Update(in DTO::HoaDon x);
+        boolean Delete(in long id);
+        DTO::DanhMuc TimKiem(in string date);
+    };
+    
+    interface IKhachHangDAO
+    {
+        KhachHangs LayDanhSach();
+        boolean Create(in DTO::KhachHang x);
+        boolean Update(in DTO::KhachHang x);
+        boolean Delete(in long id);
+        DTO::KhachHang TimKiem(in string search);
+    };
+
+    interface INhaCungCapDAO
+    {
+        NhaCungCaps LayDanhSach();
+        boolean Create(in DTO::NhaCungCap x);
+        boolean Update(in DTO::NhaCungCap x);
+        boolean Delete(in long id);
+        DTO::NhaCungCap TimKiem(in string search);
+    };
+
+    interface INhaSanXuatDAO
+    {
+        NhaSanXuats LayDanhSach();
+        boolean Create(in DTO::NhaSanXuat x);
+        boolean Update(in DTO::NhaSanXuat x);
+        boolean Delete(in long id);
+        DTO::NhaSanXuat TimKiem(in string search);
+    };
+
+    interface ILoaiSanPhamDAO
+    {
+        LoaiSanPhams LayDanhSach();
+        boolean Create(in DTO::LoaiSanPham x);
+        boolean Update(in DTO::LoaiSanPham x);
+        boolean Delete(in long id);
+        DTO::LoaiSanPham TimKiem(in string search);
+    };
+
+    interface ISanPhamDAO
+    {
+        SanPhams LayDanhSach();
+        boolean Create(in DTO::SanPham x);
+        boolean Update(in DTO::SanPham x);
+        boolean Delete(in long id);
+        DTO::SanPham TimKiem(in string search);
+    };
+
+    interface IPhieuNhapChiTietDAO
+    {
+        PhieuNhapChiTiets LayDanhSach(in long idPhieuNhap);
+        boolean Create(in DTO::PhieuNhapChiTiet x);
+        boolean Update(in DTO::PhieuNhapChiTiet x);
+        boolean Delete(in long id);
+        DTO::PhieuNhapChiTiet TimKiem(in string search);
+    };
+
+    interface IPhieuNhapDAO
+    {
+        PhieuNhaps LayDanhSach();
+        boolean Create(in DTO::PhieuNhap x);
+        boolean Update(in DTO::PhieuNhap x);
+        boolean Delete(in long id);
+        DTO::PhieuNhap TimKiem(in string date);
+    };
+
+    interface IGioHangDAO
+    {
+        GioHangs LayDanhSach(in long idKhachHang);
+        boolean Create(in DTO::GioHang x);
+        boolean Update(in DTO::GioHang x);
+        boolean Delete(in long id);
+        DTO::GioHang TimKiem(in string search);
+    };
+};
