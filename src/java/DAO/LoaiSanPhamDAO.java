@@ -73,17 +73,18 @@ public class LoaiSanPhamDAO extends ILoaiSanPhamDAOPOA {
     }
 
     @Override
-    public LoaiSanPham TimKiem(String search) {
-        ResultSet data = DataProvider.getInstance().GetDataSearch("Select * From LoaiSanPham Where TenLoai = ?", search);
+    public LoaiSanPham[] TimKiem(String search) {
+        ResultSet data = DataProvider.getInstance().GetDataSearch("Select * From LoaiSanPham Where TenLoai LIKE ?", search);
+        ArrayList<LoaiSanPham> loaiSanPhams = new ArrayList<>();
         try {
             while (data.next()) {
                 LoaiSanPham x = new LoaiSanPham(data.getInt("MaLoaiSP"), data.getString("TenLoai"), data.getInt("MaDanhMuc"));
-                return x;
+                loaiSanPhams.add(x);
             }
         } catch (SQLException ex) {
             Logger.getLogger(LoaiSanPhamDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
-        return null;
+        return loaiSanPhams.toArray(new LoaiSanPham[loaiSanPhams.size()]);
     }
 
 }

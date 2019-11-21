@@ -32,16 +32,50 @@ public class PhieuNhapChiTietDAO extends IPhieuNhapChiTietDAOPOA{
 
     @Override
     public boolean Create(PhieuNhapChiTiet x) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        String query = "INSERT INTO PhieuNhapChiTiet(MaPN, MaSP, SoLuongNhap, DonGiaNhap) VALUES (?, ?, ?, ?)";
+        try {
+            PreparedStatement pre = DataProvider.getInstance().getConnection().prepareStatement(query);
+            pre.setInt(1, x.maPN);
+            pre.setInt(2, x.maSP);
+            pre.setInt(3, x.soLuongNhap);
+            pre.setFloat(4, x.donGiaNhap);
+            int result = pre.executeUpdate();
+            return result > 0;
+        } catch (SQLException ex) {
+            Logger.getLogger(PhieuNhapChiTietDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return false;
     }
 
     @Override
     public boolean Update(PhieuNhapChiTiet x) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        String query = "UPDATE PhieuNhapChiTiet SET SoLuongNhap = ?, DonGiaNhap = ? WHERE MaPN = ? AND MaSP = ?";
+        try {
+            PreparedStatement pre = DataProvider.getInstance().getConnection().prepareStatement(query);
+            pre.setInt(1, x.soLuongNhap);
+            pre.setFloat(2, x.donGiaNhap);
+            pre.setInt(3, x.maPN);
+            pre.setFloat(4, x.maSP);
+            int result = pre.executeUpdate();
+            return result > 0;
+        } catch (SQLException ex) {
+            Logger.getLogger(PhieuNhapChiTietDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return false;
     }
 
     @Override
-    public boolean Delete(int id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public boolean Delete(int maPhieuNhap, int maSP) {
+        String query = "DELETE PhieuNhapChiTiet WHERE MaPN = ? AND MaSP = ?";
+        try {
+            PreparedStatement pre = DataProvider.getInstance().getConnection().prepareStatement(query);
+            pre.setInt(1, maPhieuNhap);
+            pre.setFloat(2, maSP);
+            int result = pre.executeUpdate();
+            return result > 0;
+        } catch (SQLException ex) {
+            Logger.getLogger(PhieuNhapChiTietDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return false;
     }
 }

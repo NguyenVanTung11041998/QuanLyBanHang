@@ -90,17 +90,18 @@ public class SanPhamDAO extends ISanPhamDAOPOA {
     }
 
     @Override
-    public SanPham TimKiem(String search) {
-        ResultSet data = DataProvider.getInstance().GetDataSearch("Select * From SanPham Where TenSP = ?", search);
+    public SanPham[] TimKiem(String search) {
+        ResultSet data = DataProvider.getInstance().GetDataSearch("Select * From SanPham Where TenSP LIKE ?", search);
+        ArrayList<SanPham> sanPhams = new ArrayList<>();
         try {
             while (data.next()) {
                 SanPham x = new SanPham(data.getInt("MaSP"), data.getString("TenSP"), data.getFloat("DonGia"), data.getString("NgayCapNhat"), data.getString("MoTa"), data.getString("HinhAnh"), data.getInt("SoLuongTon"), data.getInt("MaNCC"), data.getInt("MaNSX"), data.getInt("MaLoaiSP"), data.getBoolean("TrangThai"));
-                return x;
+                sanPhams.add(x);
             }
         } catch (SQLException ex) {
             Logger.getLogger(SanPhamDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
-        return null;
+        return sanPhams.toArray(new SanPham[sanPhams.size()]);
     }
 
 }

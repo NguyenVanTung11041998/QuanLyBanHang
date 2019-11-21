@@ -78,19 +78,20 @@ public class NhaCungCapDAO extends INhaCungCapDAOPOA{
     }
 
     @Override
-    public NhaCungCap TimKiem(String search) {
-        String query = "SELECT * FROM dbo.NhaCungCap WHERE TenNCC = ?";
+    public NhaCungCap[] TimKiem(String search) {
+        String query = "SELECT * FROM dbo.NhaCungCap WHERE TenNCC LIKE ?";
+        ArrayList<NhaCungCap> nhaCungCaps = new ArrayList<>();
         ResultSet data = DataProvider.getInstance().GetDataSearch(query, search);
         try {
             while(data.next())
             {
                 NhaCungCap x = new NhaCungCap(data.getInt("MaNCC"), data.getString("TenNCC"), data.getString("DiaChi"), data.getString("SoDT"), data.getString("Email"));
-                return x;
+                nhaCungCaps.add(x);
             }
         } catch (SQLException ex) {
             Logger.getLogger(NhaCungCapDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
-        return null;
+        return nhaCungCaps.toArray(new NhaCungCap[nhaCungCaps.size()]);
     }
     
 }

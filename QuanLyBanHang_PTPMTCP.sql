@@ -149,3 +149,4 @@ SELECT * FROM dbo.AccountAdmin
 SELECT * FROM dbo.NhaCungCap
 
 --UPDATE dbo.HoaDon SET DaThanhToan = ~DaThanhToan WHERE MaHD = 1
+SELECT * FROM dbo.DanhMuc

@@ -70,17 +70,18 @@ public class DanhMucDAO extends IDanhMucDAOPOA {
     }
 
     @Override
-    public DanhMuc TimKiem(String search) {
-        ResultSet data = DataProvider.getInstance().GetDataSearch("Select * From DanhMuc Where TenDanhMuc = ?", search);
+    public DanhMuc[] TimKiem(String search) {
+        ArrayList<DanhMuc> danhMucs = new ArrayList<>();
+        ResultSet data = DataProvider.getInstance().GetDataSearch("Select * From DanhMuc Where TenDanhMuc LIKE ?", search);
         try {
             while (data.next()) {
                 DanhMuc x = new DanhMuc(data.getInt("MaDanhMuc"), data.getString("TenDanhMuc"));
-                return x;
+                danhMucs.add(x);
             }
         } catch (SQLException ex) {
             Logger.getLogger(DanhMucDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
-        return null;
+        return danhMucs.toArray(new DanhMuc[danhMucs.size()]);
     }
 
 }

@@ -129,7 +129,7 @@ module Corba_DAO
         boolean Create(in DTO::DanhMuc x);
         boolean Update(in DTO::DanhMuc x);
         boolean Delete(in long id);
-        DTO::DanhMuc TimKiem(in string search);
+        DanhMucDAOs TimKiem(in string search);
     };
 
     interface IHoaDonChiTietDAO
@@ -152,7 +152,7 @@ module Corba_DAO
         boolean Create(in DTO::KhachHang x);
         boolean Update(in DTO::KhachHang x);
         boolean Delete(in long id);
-        DTO::KhachHang TimKiem(in string search);
+        KhachHangs TimKiem(in string search);
     };
 
     interface INhaCungCapDAO
@@ -161,7 +161,7 @@ module Corba_DAO
         boolean Create(in DTO::NhaCungCap x);
         boolean Update(in DTO::NhaCungCap x);
         boolean Delete(in long id);
-        DTO::NhaCungCap TimKiem(in string search);
+        NhaCungCaps TimKiem(in string search);
     };
 
     interface INhaSanXuatDAO
@@ -170,7 +170,7 @@ module Corba_DAO
         boolean Create(in DTO::NhaSanXuat x);
         boolean Update(in DTO::NhaSanXuat x);
         boolean Delete(in long id);
-        DTO::NhaSanXuat TimKiem(in string search);
+        NhaSanXuats TimKiem(in string search);
     };
 
     interface ILoaiSanPhamDAO
@@ -179,7 +179,7 @@ module Corba_DAO
         boolean Create(in DTO::LoaiSanPham x);
         boolean Update(in DTO::LoaiSanPham x);
         boolean Delete(in long id);
-        DTO::LoaiSanPham TimKiem(in string search);
+        LoaiSanPhams TimKiem(in string search);
     };
 
     interface ISanPhamDAO
@@ -188,7 +188,7 @@ module Corba_DAO
         boolean Create(in DTO::SanPham x);
         boolean Update(in DTO::SanPham x);
         boolean Delete(in long id);
-        DTO::SanPham TimKiem(in string search);
+        SanPhams TimKiem(in string search);
     };
 
     interface IPhieuNhapChiTietDAO
@@ -196,7 +196,7 @@ module Corba_DAO
         PhieuNhapChiTiets LayDanhSach(in long idPhieuNhap);
         boolean Create(in DTO::PhieuNhapChiTiet x);
         boolean Update(in DTO::PhieuNhapChiTiet x);
-        boolean Delete(in long id);
+        boolean Delete(in long maPhieuNhap, in long maSP);
     };
 
     interface IPhieuNhapDAO

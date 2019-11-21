@@ -78,17 +78,18 @@ public class KhachHangDAO extends IKhachHangDAOPOA {
     }
 
     @Override
-    public KhachHang TimKiem(String search) {
-        ResultSet data = DataProvider.getInstance().GetDataSearch("Select * From KhachHang Where HoTen = ?", search);
+    public KhachHang[] TimKiem(String search) {
+        ArrayList<KhachHang> khachHangs = new ArrayList<>();
+        ResultSet data = DataProvider.getInstance().GetDataSearch("Select * From KhachHang Where HoTen LIKE ?", search);
         try {
             while (data.next()) {
                 KhachHang x = new KhachHang(data.getInt("ID"), data.getString("Email"), data.getString("MatKhau"), data.getString("HoTen"), data.getString("DiaChi"), data.getString("SoDT"));
-                return x;
+                khachHangs.add(x);
             }
         } catch (SQLException ex) {
             Logger.getLogger(KhachHangDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
-        return null;
+        return (KhachHang[]) khachHangs.toArray();
     }
 
 }

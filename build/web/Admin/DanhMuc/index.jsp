@@ -1,3 +1,4 @@
+<%@page import="DTO.DanhMuc"%> 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <jsp:include page="../SharedLayout/header.jsp"/>
 <!-- Page Heading -->
@@ -6,7 +7,7 @@
         <h1 class="page-header">
             Danh sách danh mục
             <!-- <small>Subheading</small> -->
-            <a href="admin.php?controller=category&action=add" class="btn btn-success">Thêm mới</a>
+            <a href="/QuanLyBanHang/DanhMuc_CreateServlet" class="btn btn-success">Thêm mới</a>
         </h1>
         <ol class="breadcrumb">
             <li>
@@ -39,16 +40,18 @@
                     </tr>
                 </thead>
                 <tbody>
-
-                    <tr id="row_1">
-                        <td>1</td>
-                        <td>Đồ nam</td>
+                <% DanhMuc[] danhMucs = (DanhMuc[]) request.getAttribute("data");
+                int i = 0;
+                for (DanhMuc item : danhMucs) {%> 
+                    <tr id="row_<%=item.maDanhMuc%>">
+                        <td><%= ++i %></td>
+                        <td><%= item.tenDanhMuc %></td>
                         <td>
-                            <a href="DanhMuc_EditServlet" class="btn btn-success"><i class="fa fa-edit"></i>Sửa</a>
+                        <a href="/QuanLyBanHang/DanhMuc_EditServlet?id=<%= item.maDanhMuc %>" class="btn btn-success"><i class="fa fa-edit"></i>Sửa</a>
                             <a href="#" class="delete btn btn-danger" data-id="<?php echo $value->GetMaDanhMuc();?>"><i class="fa fa-times"></i>Xóa</a>
                         </td>
                     </tr>
-
+                <%}%> 
                 </tbody>
             </table>
 

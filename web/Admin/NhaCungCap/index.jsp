@@ -47,20 +47,20 @@
                 </thead>
                 <tbody>
                 <% NhaCungCap[] nhaCungCaps = (NhaCungCap[]) request.getAttribute("data");
-                for (int i = 0; i < nhaCungCaps.length; i++) {%> 
+                int i = 0;
+                for (NhaCungCap item : nhaCungCaps) {%> 
                     <tr>
-                        <td><%= i + 1 %></td>
-                        <td><%= nhaCungCaps[i].tenNCC%></td> 
-                        <td><%= nhaCungCaps[i].diaChi%></td> 
-                        <td><%= nhaCungCaps[i].soDT%></td> 
-                        <td><%= nhaCungCaps[i].email %></td>
+                        <td><%= ++i %></td>
+                        <td><%= item.tenNCC%></td> 
+                        <td><%= item.diaChi%></td> 
+                        <td><%= item.soDT%></td> 
+                        <td><%= item.email %></td>
                         <td>
-                            <a href="/QuanLyBanHang/NhaCungCap_EditServlet?id=1" class="btn btn-success"><i class="fa fa-edit"></i>Sửa</a>
+                            <a href="/QuanLyBanHang/NhaCungCap_EditServlet?id=<%= item.maNCC %>" class="btn btn-success"><i class="fa fa-edit"></i>Sửa</a>
                             <a href="#" class="btn btn-danger" onClick="return confirmAction()"><i class="fa fa-times"></i>Xóa</a>
                         </td>
                     </tr>
-                    <%}%> 
-
+                <%}%> 
                 </tbody>
             </table>
 

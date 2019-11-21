@@ -22,7 +22,7 @@
 </div>
 <div class="row">
     <div class="col-lg-12">
-        <form class="form-horizontal" action="/QuanLyBanHang/DanhMuc_CreateServlet" method="POST" enctype="multipart/form-data">
+        <form class="form-horizontal" action="/QuanLyBanHang/DanhMuc_CreateServlet" method="POST">
             <div class="form-group">
                 <label for="inputEmail3" class="col-sm-2 control-label">Tên danh mục</label>
                 <div class="col-sm-8">
