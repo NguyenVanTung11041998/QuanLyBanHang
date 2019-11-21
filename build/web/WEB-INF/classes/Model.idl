@@ -142,8 +142,8 @@ module Corba_DAO
         HoaDons LayDanhSach();
         boolean Create(in DTO::HoaDon x);
         boolean Update(in DTO::HoaDon x);
-        boolean Delete(in long id);
-        DTO::DanhMuc TimKiem(in string date);
+        boolean ThanhToan(in long id);
+        HoaDons TimKiem(in string date);
     };
     
     interface IKhachHangDAO
@@ -197,16 +197,15 @@ module Corba_DAO
         boolean Create(in DTO::PhieuNhapChiTiet x);
         boolean Update(in DTO::PhieuNhapChiTiet x);
         boolean Delete(in long id);
-        DTO::PhieuNhapChiTiet TimKiem(in string search);
     };
 
     interface IPhieuNhapDAO
     {
         PhieuNhaps LayDanhSach();
         boolean Create(in DTO::PhieuNhap x);
-        boolean Update(in DTO::PhieuNhap x);
+        boolean Update(in string ngayNhap);
         boolean Delete(in long id);
-        DTO::PhieuNhap TimKiem(in string date);
+        PhieuNhaps TimKiem(in string date);
     };
 
     interface IGioHangDAO
@@ -214,7 +213,6 @@ module Corba_DAO
         GioHangs LayDanhSach(in long idKhachHang);
         boolean Create(in DTO::GioHang x);
         boolean Update(in DTO::GioHang x);
-        boolean Delete(in long id);
-        DTO::GioHang TimKiem(in string search);
+        boolean Delete(in long idKhachHang, in long maSP);
     };
 };

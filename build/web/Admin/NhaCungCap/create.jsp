@@ -27,7 +27,7 @@
             <div class="form-group">
                 <label for="inputEmail3" class="col-sm-2 control-label">Tên nhà cung cấp</label>
                 <div class="col-sm-8">
-                    <input type="text" class="form-control" id="" placeholder="Tên nhà cung cấp" name="txtTenNCC" />       
+                    <input type="text" name="txtTenNCC" class="form-control" id="" placeholder="Tên nhà cung cấp" />       
                 </div>
             </div>
 
@@ -55,7 +55,7 @@
 
             <div class="form-group">
                 <div class="col-sm-offset-2 col-sm-10">
-                    <button type="submit" class="btn btn-success" name="btnThem">Thêm mới</button>
+                    <input type="submit" class="btn btn-success" value="Thêm mới"/>
                 </div>
             </div>
         </form>

@@ -36,6 +36,14 @@
         <servlet-name>HomeServlet</servlet-name>
         <servlet-class>Controller.HomeServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>NhaCungCapServlet</servlet-name>
+        <servlet-class>Admin.NhaCungCapServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>NhaCungCap_CreateServlet</servlet-name>
+        <servlet-class>Admin.NhaCungCap_CreateServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>dispatcher</servlet-name>
         <url-pattern>*.htm</url-pattern>
@@ -63,6 +71,14 @@
     <servlet-mapping>
         <servlet-name>HomeServlet</servlet-name>
         <url-pattern>/HomeServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>NhaCungCapServlet</servlet-name>
+        <url-pattern>/NhaCungCapServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>NhaCungCap_CreateServlet</servlet-name>
+        <url-pattern>/NhaCungCap_CreateServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

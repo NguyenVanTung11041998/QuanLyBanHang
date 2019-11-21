@@ -9,21 +9,21 @@
         <meta name="author" content="">
         <title>Trang Admin</title>
         <!-- Bootstrap Core CSS -->
-        <link href="../../Contents/Admin/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+        <link href="Contents/Admin/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
         <!-- Custom CSS -->
-        <link href="../../Contents/Admin/css/sb-admin.css" rel="stylesheet">
+        <link href="Contents/Admin/css/sb-admin.css" rel="stylesheet">
 
         <!-- Custom Fonts -->
-        <link href="../../Contents/Admin/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+        <link href="Contents/Admin/css/font-awesome.min.css" rel="stylesheet" type="text/css">
         <link rel="stylesheet" type="text/css" href="Public/css/style.css">
         <!-- /#wrapper -->
         <!-- jQuery -->
-        <script src="../../Contents/Admin/js/jquery.js"></script>
+        <script src="Contents/Admin/js/jquery.js"></script>
         <!-- <script type="text/javascript" src="Public/js/jquery.min.js"></script> -->
-        <script type="text/javascript" src="../../Contents/Admin/js/jquery-3.2.1.min.js"></script>
+        <script type="text/javascript" src="Contents/Admin/js/jquery-3.2.1.min.js"></script>
         <!-- Bootstrap Core JavaScript -->
-        <script src="../../Contents/Admin/js/bootstrap.min.js"></script>
-        <script type="text/javascript" src="../../Contents/Admin/Vendor/chart.js"></script>
+        <script src="Contents/Admin/js/bootstrap.min.js"></script>
+        <script type="text/javascript" src="Contents/Admin/Vendor/chart.js"></script>
         <script type="text/javascript">
             function confirmAction() {
                 return confirm("Bạn có muốn xóa bản ghi này?");

@@ -48,7 +48,7 @@ CREATE TABLE SanPham
     TenSP NVARCHAR(50),
     DonGia FLOAT,
     NgayCapNhat DATE,
-    MoTa Text,
+    MoTa NTEXT,
     HinhAnh TEXT,
     SoLuongTon INT,
     MaNCC INT,
@@ -66,7 +66,7 @@ CREATE TABLE KhachHang
     Email NVARCHAR(50),
     MatKhau VARCHAR(50),
     HoTen NVARCHAR(50),
-    DiaChi VARCHAR(50),
+    DiaChi NVARCHAR(50),
     SoDT VARCHAR(11)
 )
 
@@ -144,4 +144,8 @@ END
 GO
 
 INSERT INTO dbo.AccountAdmin (TaiKhoan, MatKhau ) VALUES ('tungktpm1@gmail.com', '123456')
+
 SELECT * FROM dbo.AccountAdmin
+SELECT * FROM dbo.NhaCungCap
+
+--UPDATE dbo.HoaDon SET DaThanhToan = ~DaThanhToan WHERE MaHD = 1

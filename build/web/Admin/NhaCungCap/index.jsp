@@ -1,4 +1,6 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@page import="DTO.NhaCungCap"%> 
+
 <jsp:include page="../SharedLayout/header.jsp"/>
 <div class="row">
     <div class="col-lg-12">
@@ -44,18 +46,20 @@
                     </tr>
                 </thead>
                 <tbody>
-
+                <% NhaCungCap[] nhaCungCaps = (NhaCungCap[]) request.getAttribute("data");
+                for (int i = 0; i < nhaCungCaps.length; i++) {%> 
                     <tr>
-                        <td>1</td>
-                        <td>Adidas</td>
-                        <td>Hà Nội</td>
-                        <td>0985556225</td>
-                        <td>adidas@gmail.com</td>
+                        <td><%= i + 1 %></td>
+                        <td><%= nhaCungCaps[i].tenNCC%></td> 
+                        <td><%= nhaCungCaps[i].diaChi%></td> 
+                        <td><%= nhaCungCaps[i].soDT%></td> 
+                        <td><%= nhaCungCaps[i].email %></td>
                         <td>
                             <a href="/QuanLyBanHang/NhaCungCap_EditServlet?id=1" class="btn btn-success"><i class="fa fa-edit"></i>Sửa</a>
                             <a href="#" class="btn btn-danger" onClick="return confirmAction()"><i class="fa fa-times"></i>Xóa</a>
                         </td>
                     </tr>
+                    <%}%> 
 
                 </tbody>
             </table>
