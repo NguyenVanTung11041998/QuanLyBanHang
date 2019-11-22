@@ -29,6 +29,7 @@ public class DataProvider {
             connection = DriverManager.getConnection("jdbc:sqlserver://localhost:1433;databaseName=QuanLyBanHang_PTPMTCP", "sa", "");
         } catch (ClassNotFoundException | SQLException ex) {
             Logger.getLogger(DataProvider.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println(ex.getMessage());
         }
     }
     
