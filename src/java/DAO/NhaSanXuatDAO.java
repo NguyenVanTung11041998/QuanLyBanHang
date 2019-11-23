@@ -87,5 +87,10 @@ public class NhaSanXuatDAO extends INhaSanXuatDAOPOA{
         }
         return (NhaSanXuat[]) nhaSanXuats.toArray();
     }
+
+    @Override
+    public NhaSanXuat GetById(int id) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
     
 }

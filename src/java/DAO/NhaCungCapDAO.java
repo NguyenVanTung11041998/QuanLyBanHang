@@ -93,5 +93,10 @@ public class NhaCungCapDAO extends INhaCungCapDAOPOA{
         }
         return nhaCungCaps.toArray(new NhaCungCap[nhaCungCaps.size()]);
     }
+
+    @Override
+    public NhaCungCap GetById(int id) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
     
 }

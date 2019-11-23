@@ -84,4 +84,9 @@ public class DanhMucDAO extends IDanhMucDAOPOA {
         return danhMucs.toArray(new DanhMuc[danhMucs.size()]);
     }
 
+    @Override
+    public DanhMuc GetById(int id) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
 }

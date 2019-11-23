@@ -43,11 +43,12 @@ public class PhieuNhapDAO extends IPhieuNhapDAOPOA{
     }
 
     @Override
-    public boolean Update(String ngayNhap) {
+    public boolean Update(int id, String ngayNhap) {
         String query = "UPDATE dbo.PhieuNhap SET NgayNhap = ? WHERE MaPN = ?";
         try {
             PreparedStatement pre = DataProvider.getInstance().getConnection().prepareStatement(query);
             pre.setDate(1, new java.sql.Date(new java.util.Date(ngayNhap).getTime()));
+            pre.setInt(2, id);
             int result = pre.executeUpdate();
             return result > 0;
         } catch (SQLException ex) {
