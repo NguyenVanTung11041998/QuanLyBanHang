@@ -8,7 +8,7 @@
             <h1 class="page-header">
                 Danh sách nhà cung cấp
                 <!-- <small>Subheading</small> -->
-                <a href="/QuanLyBanHang/NhaCungCap_CreateServlet" class="btn btn-success">Thêm mới</a>
+                <a href="/QuanLyBanHang/them-nha-cung-cap" class="btn btn-success">Thêm mới</a>
             </h1>
         </div>
         <div class="form-group row">
@@ -22,7 +22,7 @@
         <div class="clearfix"></div>
         <ol class="breadcrumb">
             <li>
-                <i class="fa fa-dashboard"></i>  <a href="/QuanLyBanHang/NhaCungCapServlet">Dashboard</a>
+                <i class="fa fa-dashboard"></i>  <a href="/QuanLyBanHang/nha-cung-cap">Dashboard</a>
             </li>
             <li class="active">
                 <i class="fa fa-file"></i> Nhà cung cấp
@@ -49,15 +49,15 @@
                 <% NhaCungCap[] nhaCungCaps = (NhaCungCap[]) request.getAttribute("data");
                 int i = 0;
                 for (NhaCungCap item : nhaCungCaps) {%> 
-                    <tr>
+                    <tr id="row_<%= item.maNCC %>">
                         <td><%= ++i %></td>
                         <td><%= item.tenNCC%></td> 
                         <td><%= item.diaChi%></td> 
                         <td><%= item.soDT%></td> 
                         <td><%= item.email %></td>
                         <td>
-                            <a href="/QuanLyBanHang/NhaCungCap_EditServlet?id=<%= item.maNCC %>" class="btn btn-success"><i class="fa fa-edit"></i>Sửa</a>
-                            <a href="#" class="btn btn-danger" onClick="return confirmAction()"><i class="fa fa-times"></i>Xóa</a>
+                            <a href="/QuanLyBanHang/sua-nha-cung-cap?id=<%= item.maNCC %>" class="btn btn-success"><i class="fa fa-edit"></i>Sửa</a>
+                            <a href="#" class="delete btn btn-danger" data-id="<%= item.maNCC %>"><i class="fa fa-times"></i>Xóa</a>
                         </td>
                     </tr>
                 <%}%> 
@@ -88,6 +88,30 @@
 </div>
 
 <script type="text/javascript">
+    $('.delete').click(function (e) {
+        e.preventDefault();
+        if (confirm("Bạn có muốn xóa bản ghi này không?"))
+        {
+            var x = $(this);
+            var id = x.data('id');
+            $.ajax({
+                url: '/QuanLyBanHang/NhaCungCap_DeleteServlet',
+                method: 'Post',
+                data: {id: id},
+                success: function (result) {
+                    if (result)
+                    {
+                        var rowDelete = x.parent().parent();
+                        rowDelete.remove();
+                        alert("Xóa bản ghi thành công!");
+                    } else
+                        alert("Không thể xóa bản ghi! Vì đã tồn tại trong sản phẩm!");
+                }
+            });
+        }
+    });
+
+    
     function LoadData(query) {
         $.ajax({
             url: "Admin/Controller/Supplier/fetch.php",

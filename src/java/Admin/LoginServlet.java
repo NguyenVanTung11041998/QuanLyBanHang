@@ -48,13 +48,9 @@ public class LoginServlet extends HttpServlet {
         AccountAdmin accountAdmin = AccountAdminDAO.getInstance().Login(taiKhoan, matKhau);
         PrintWriter out = response.getWriter();
         if(accountAdmin != null)
-        {
-            out.print("<script>alert('Đăng nhập thành công!')</script>");
-        }
+            out.print("<script>alert('Đăng nhập thành công!'); location.href=\"/QuanLyBanHang/trang-chu-quan-ly\";</script>");
         else
-        {
             out.print("<script>alert('Sai tài khoản hoặc mật khẩu!'); location.href=\"/QuanLyBanHang/LoginServlet\";</script>");
-        }
     }
 
     @Override

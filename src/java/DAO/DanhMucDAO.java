@@ -86,7 +86,18 @@ public class DanhMucDAO extends IDanhMucDAOPOA {
 
     @Override
     public DanhMuc GetById(int id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        String query = "Select * From DanhMuc Where MaDanhMuc = ?";
+        ResultSet data = DataProvider.getInstance().GetById(query, id);
+        try {
+            while(data.next())
+            {
+                DanhMuc x = new DanhMuc(data.getInt("MaDanhMuc"), data.getString("TenDanhMuc"));
+                return x;
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(DanhMucDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
     }
 
 }

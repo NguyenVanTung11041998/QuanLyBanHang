@@ -96,7 +96,18 @@ public class NhaCungCapDAO extends INhaCungCapDAOPOA{
 
     @Override
     public NhaCungCap GetById(int id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        String query = "Select * From NhaCungCap Where MaNCC = ?";
+        ResultSet data = DataProvider.getInstance().GetById(query, id);
+        try {
+            while(data.next())
+            {
+                NhaCungCap x = new NhaCungCap(data.getInt("MaNCC"), data.getString("TenNCC"), data.getString("DiaChi"), data.getString("SoDT"), data.getString("Email"));
+                return x;
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(DanhMucDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
     }
     
 }

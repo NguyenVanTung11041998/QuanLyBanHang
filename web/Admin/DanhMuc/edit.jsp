@@ -1,4 +1,6 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@page import="DTO.DanhMuc"%>
+<% DanhMuc x = (DanhMuc)request.getAttribute("data"); %>
 <jsp:include page="../SharedLayout/header.jsp"/>
 <!-- Page Heading -->
 <div class="row">
@@ -23,13 +25,12 @@
 </div>
 <div class="row">
     <div class="col-lg-12">
-        <form class="form-horizontal" action="/QuanLyBanHang/DanhMuc_EditServlet" method="POST" enctype="multipart/form-data">
+        <form class="form-horizontal" action="/QuanLyBanHang/DanhMuc_EditServlet?id=<%= x.maDanhMuc %>" method="POST">
 
             <div class="form-group">
                 <label for="inputEmail3" class="col-sm-2 control-label">Tên danh mục</label>
                 <div class="col-sm-8">
-                    <input type="text" class="form-control" id="" placeholder="Tên loại" name="txtTenDanhMuc" value="">
-                    
+                    <input type="text" class="form-control" id="" placeholder="Tên loại" name="txtTenDanhMuc" value="<%= x.tenDanhMuc %>">
                 </div>
             </div>
 

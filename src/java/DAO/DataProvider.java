@@ -45,12 +45,25 @@ public class DataProvider {
         return data;
     }
     
-    public ResultSet GetDataSearch(String query, String ma)
+    public ResultSet GetDataSearch(String query, String search)
     {
         ResultSet data = null;
         try {
             PreparedStatement pre = connection.prepareStatement(query);
-            pre.setString(1, ma);
+            pre.setString(1, search);
+            data = pre.executeQuery();
+        } catch (SQLException ex) {
+            Logger.getLogger(DataProvider.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return data;
+    }
+    
+    public ResultSet GetById(String query, int id)
+    {
+        ResultSet data = null;
+        try {
+            PreparedStatement pre = connection.prepareStatement(query);
+            pre.setInt(1, id);
             data = pre.executeQuery();
         } catch (SQLException ex) {
             Logger.getLogger(DataProvider.class.getName()).log(Level.SEVERE, null, ex);

@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet(urlPatterns = { "/Admin/NhaCungCap/Create" })
+@WebServlet(urlPatterns = { "/them-nha-cung-cap" })
 public class NhaCungCap_CreateServlet extends HttpServlet {
     private NhaCungCapDAO nhaCungCapDAO = new NhaCungCapDAO();
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
@@ -52,11 +52,8 @@ public class NhaCungCap_CreateServlet extends HttpServlet {
         NhaCungCap x = new NhaCungCap(0, tenNCC, diaChi, soDT, email);
         boolean result = nhaCungCapDAO.Create(x);
         PrintWriter out = response.getWriter();
-        if (result) {
-            out.print("<script>alert(\"Thêm thành công\")</script>");
-            RequestDispatcher dispatcher = request.getRequestDispatcher("Admin/NhaCungCap/index.jsp");
-            dispatcher.forward(request, response);
-        }
+        if (result)
+            out.print("<script>alert(\"Thêm thành công\");  location.href=\"/QuanLyBanHang/nha-cung-cap\";</script>");
         else
             out.print("<script>alert(\"Thêm thất bại\")</script>");
     }

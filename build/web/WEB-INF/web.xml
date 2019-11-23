@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<web-app version="3.1" metadata-complete="false" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd">
+<web-app metadata-complete="false" version="3.1" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd">
     <context-param>
         <param-name>contextConfigLocation</param-name>
         <param-value>/WEB-INF/applicationContext.xml</param-value>
@@ -44,6 +44,18 @@
         <servlet-name>NhaCungCap_CreateServlet</servlet-name>
         <servlet-class>Admin.NhaCungCap_CreateServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>HomeAdminServlet</servlet-name>
+        <servlet-class>Admin.HomeAdminServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>NhaCungCap_EditServlet</servlet-name>
+        <servlet-class>Admin.NhaCungCap_EditServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>NhaCungCap_DeleteServlet</servlet-name>
+        <servlet-class>Admin.NhaCungCap_DeleteServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>dispatcher</servlet-name>
         <url-pattern>*.htm</url-pattern>
@@ -79,6 +91,18 @@
     <servlet-mapping>
         <servlet-name>NhaCungCap_CreateServlet</servlet-name>
         <url-pattern>/NhaCungCap_CreateServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>HomeAdminServlet</servlet-name>
+        <url-pattern>/HomeAdminServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>NhaCungCap_EditServlet</servlet-name>
+        <url-pattern>/NhaCungCap_EditServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>NhaCungCap_DeleteServlet</servlet-name>
+        <url-pattern>/NhaCungCap_DeleteServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

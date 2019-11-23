@@ -112,7 +112,10 @@
                 <div class="collapse navbar-collapse navbar-ex1-collapse">
                     <ul class="nav navbar-nav side-nav">
                         <li>
-                            <a href="NhaCungCapServlet"><i class="fa fa-fw fa-dashboard"></i> Nhà cung cấp</a>
+                            <a href="trang-chu-quan-ly"><i class="fa fa-fw fa-dashboard"></i> Trang chủ</a>
+                        </li>
+                        <li>
+                            <a href="nha-cung-cap"><i class="fa fa-fw fa-dashboard"></i> Nhà cung cấp</a>
                         </li>
                         <li>
                             <a href="LoaiSanPhamServlet"><i class="fa fa-list"></i> Loại sản phẩm</a>

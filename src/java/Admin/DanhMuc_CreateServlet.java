@@ -48,11 +48,10 @@ public class DanhMuc_CreateServlet extends HttpServlet {
         DanhMuc x = new DanhMuc(0, tenDanhMuc);
         boolean result = danhMucDAO.Create(x);
         PrintWriter out = response.getWriter();
-        if (result) {
-            out.print("<script>alert(\"Thêm thành công\"); location.href=\"/QuanLyBanHang/DanhMucServlet\";</script>");
-        } else {
+        if (result)
+            out.print("<script>alert(\"Thêm thành công\"); location.href=\"/QuanLyBanHang/danh-muc\";</script>");
+        else
             out.print("<script>alert(\"Thêm thất bại\")</script>");
-        }
     }
 
     @Override

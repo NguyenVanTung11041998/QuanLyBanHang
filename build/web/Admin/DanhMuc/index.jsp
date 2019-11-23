@@ -40,18 +40,18 @@
                     </tr>
                 </thead>
                 <tbody>
-                <% DanhMuc[] danhMucs = (DanhMuc[]) request.getAttribute("data");
-                int i = 0;
-                for (DanhMuc item : danhMucs) {%> 
+                    <% DanhMuc[] danhMucs = (DanhMuc[]) request.getAttribute("data");
+                    int i = 0;
+                    for (DanhMuc item : danhMucs) {%> 
                     <tr id="row_<%=item.maDanhMuc%>">
-                        <td><%= ++i %></td>
-                        <td><%= item.tenDanhMuc %></td>
+                        <td><%= ++i%></td>
+                        <td><%= item.tenDanhMuc%></td>
                         <td>
-                        <a href="/QuanLyBanHang/DanhMuc_EditServlet?id=<%= item.maDanhMuc %>" class="btn btn-success"><i class="fa fa-edit"></i>Sửa</a>
-                            <a href="#" class="delete btn btn-danger" data-id="<?php echo $value->GetMaDanhMuc();?>"><i class="fa fa-times"></i>Xóa</a>
+                            <a href="/QuanLyBanHang/DanhMuc_EditServlet?id=<%= item.maDanhMuc%>" class="btn btn-success"><i class="fa fa-edit"></i>Sửa</a>
+                            <a href="#" class="delete btn btn-danger" data-id="<%= item.maDanhMuc %>"><i class="fa fa-times"></i>Xóa</a>
                         </td>
                     </tr>
-                <%}%> 
+                    <%}%> 
                 </tbody>
             </table>
 
@@ -86,11 +86,11 @@
             var x = $(this);
             var id = x.data('id');
             $.ajax({
-                url: 'Admin/Controller/Category/delete.php',
+                url: '/QuanLyBanHang/DanhMuc_DeleteServlet',
                 method: 'Post',
                 data: {id: id},
-                success: function (id) {
-                    if (id != "")
+                success: function (result) {
+                    if (result)
                     {
                         var rowDelete = x.parent().parent();
                         rowDelete.remove();
@@ -104,7 +104,7 @@
 
     function LoadData(query) {
         $.ajax({
-            url: "Admin/Controller/Category/fetch.php",
+            url: "/QuanLyBanHang/DanhMuc_SearchServlet",
             method: "POST",
             data: {query: query},
             success: function (data) {
