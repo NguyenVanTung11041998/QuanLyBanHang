@@ -43,7 +43,7 @@
                     <% DanhMuc[] danhMucs = (DanhMuc[]) request.getAttribute("data");
                     int i = 0;
                     for (DanhMuc item : danhMucs) {%> 
-                    <tr id="row_<%=item.maDanhMuc%>">
+                    <tr id="row_<%= item.maDanhMuc %>">
                         <td><%= ++i%></td>
                         <td><%= item.tenDanhMuc%></td>
                         <td>
