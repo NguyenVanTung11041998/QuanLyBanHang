@@ -97,4 +97,23 @@ public class KhachHangDAO extends IKhachHangDAOPOA {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
+    @Override
+    public KhachHang Login(String email, String matKhau) {
+        String query = "Select * From KhachHang Where Email = ? And MatKhau = ?";
+        try {
+            PreparedStatement pre = DataProvider.getInstance().getConnection().prepareStatement(query);
+            pre.setString(1, email);
+            pre.setString(2, matKhau);
+            ResultSet data = pre.executeQuery();
+            while (data.next()) 
+            {
+                KhachHang x = new KhachHang(data.getInt("ID"), data.getString("Email"), data.getString("MatKhau"), data.getString("HoTen"), data.getString("DiaChi"), data.getString("SoDT"));
+                return x;
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(KhachHangDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
+    }
+
 }

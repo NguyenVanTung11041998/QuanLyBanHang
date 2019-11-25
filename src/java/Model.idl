@@ -155,6 +155,7 @@ module Corba_DAO
         boolean Delete(in long id);
         KhachHangs TimKiem(in string search);
         DTO::KhachHang GetById(in long id);
+        DTO::KhachHang Login(in string email, in string matKhau);
     };
 
     interface INhaCungCapDAO

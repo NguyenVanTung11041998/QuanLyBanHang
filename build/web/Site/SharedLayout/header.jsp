@@ -42,8 +42,8 @@
                     </div>
                     <div class="header-left">		
                         <ul>
-                            <li ><a href="/QuanLyBanHang/HomeServlet"  >Login</a></li>
-                            <li><a  href="register.html"  >Register</a></li>
+                            <li ><a href="/QuanLyBanHang/khach-hang-dang-nhap"  >Login</a></li>
+                            <li><a  href="/QuanLyBanHang/dang-ky-tai-khoan"  >Register</a></li>
 
                         </ul>
                         <div class="cart box_1">
@@ -63,11 +63,11 @@
             <div class="container">
                 <div class="head-top">
                     <div class="logo">
-                        <a href="/QuanLyBanHang/HomeServlet"><img src="images/logo.png" alt=""></a>	
+                        <a href="/QuanLyBanHang/trang-chu"><img src="images/logo.png" alt=""></a>	
                     </div>
                     <div class=" h_menu4">
                         <ul class="memenu skyblue">
-                            <li class="active grid"><a class="color8" href="index.html">Home</a></li>	
+                            <li class="active grid"><a class="color8" href="/QuanLyBanHang/trang-chu">Home</a></li>	
                             <li><a class="color1" href="#">Men</a>
                                 <div class="mepanel">
                                     <div class="row">
