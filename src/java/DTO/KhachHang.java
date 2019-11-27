@@ -31,4 +31,8 @@ public final class KhachHang implements org.omg.CORBA.portable.IDLEntity
     soDT = _soDT;
   } // ctor
 
+    public KhachHang(String Email, String MatKhau, String HoTen, String DiaChi, String SoDT) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
 } // class KhachHang
