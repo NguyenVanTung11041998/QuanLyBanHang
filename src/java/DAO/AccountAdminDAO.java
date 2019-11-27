@@ -6,10 +6,16 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import org.omg.CORBA.ORB;
 
 public class AccountAdminDAO extends IAccountAdminDAOPOA{
     private static AccountAdminDAO instance;
+    private ORB orb;
 
+    public void setOrb(ORB orb) {
+        this.orb = orb;
+    }
+    
     public static AccountAdminDAO getInstance() {
         if(instance == null)
             instance = new AccountAdminDAO();
