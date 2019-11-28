@@ -105,7 +105,7 @@ public class NhaCungCapDAO extends INhaCungCapDAOPOA{
                 return x;
             }
         } catch (SQLException ex) {
-            Logger.getLogger(DanhMucDAO.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(NhaCungCapDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
         return null;
     }

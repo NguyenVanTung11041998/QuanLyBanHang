@@ -152,6 +152,7 @@ module Corba_DAO
         KhachHangs LayDanhSach();
         boolean Create(in DTO::KhachHang x);
         boolean Update(in DTO::KhachHang x);
+        boolean UpdateInfo(in long id, in string hoTen, in string soDienThoai, in string diaChi);
         boolean Delete(in long id);
         KhachHangs TimKiem(in string search);
         DTO::KhachHang GetById(in long id);

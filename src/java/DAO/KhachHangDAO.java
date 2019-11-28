@@ -94,7 +94,18 @@ public class KhachHangDAO extends IKhachHangDAOPOA {
 
     @Override
     public KhachHang GetById(int id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        String query = "Select * From KhachHang Where ID = ?";
+        ResultSet data = DataProvider.getInstance().GetById(query, id);
+        try {
+            while(data.next())
+            {
+                KhachHang x = new KhachHang(data.getInt("ID"), data.getString("Email"), data.getString("MatKhau"), data.getString("HoTen"), data.getString("DiaChi"), data.getString("SoDT"));
+                return x;
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(KhachHangDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
     }
 
     @Override
@@ -114,6 +125,23 @@ public class KhachHangDAO extends IKhachHangDAOPOA {
             Logger.getLogger(KhachHangDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
         return null;
+    }
+
+    @Override
+    public boolean UpdateInfo(int id, String hoTen, String soDienThoai, String diaChi) {
+        String query = "UPDATE dbo.KhachHang SET HoTen = ?, DiaChi = ?, SoDT = ? WHERE ID = ?";
+        try {
+            PreparedStatement pre = DataProvider.getInstance().getConnection().prepareStatement(query);
+            pre.setString(1, hoTen);
+            pre.setString(2, diaChi);
+            pre.setString(3, soDienThoai);
+            pre.setInt(4, id);
+            int result = pre.executeUpdate();
+            return result > 0;
+        } catch (SQLException ex) {
+            Logger.getLogger(KhachHangDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return false;
     }
 
 }

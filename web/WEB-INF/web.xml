@@ -64,6 +64,10 @@
         <servlet-name>KhachHang_LoginServlet</servlet-name>
         <servlet-class>Controller.KhachHang_LoginServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>KhachHang_EditServlet</servlet-name>
+        <servlet-class>Controller.KhachHang_EditServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>dispatcher</servlet-name>
         <url-pattern>*.htm</url-pattern>
@@ -119,6 +123,10 @@
     <servlet-mapping>
         <servlet-name>KhachHang_LoginServlet</servlet-name>
         <url-pattern>/KhachHang_LoginServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>KhachHang_EditServlet</servlet-name>
+        <url-pattern>/KhachHang_EditServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

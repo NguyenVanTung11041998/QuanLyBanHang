@@ -16,7 +16,7 @@
                         <span >Password</span>
                         <input type="password" name="txtMatKhau">
                     </div>				
-                    <input type="submit" value="Login"> 
+                    <input type="submit" value="Đăng nhập"> 
                 </form>
             </div>
             <div class="col-md-4 left-account ">

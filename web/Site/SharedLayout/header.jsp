@@ -1,4 +1,6 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@page import="DTO.KhachHang"%>
+<% KhachHang khachHang = (KhachHang) request.getAttribute("KhachHang"); %>
 <!DOCTYPE html>
 <html>
     <head>
@@ -42,9 +44,12 @@
                     </div>
                     <div class="header-left">		
                         <ul>
-                            <li ><a href="/QuanLyBanHang/khach-hang-dang-nhap"  >Login</a></li>
-                            <li><a  href="/QuanLyBanHang/dang-ky-tai-khoan"  >Register</a></li>
-
+                            <li ><a href="/QuanLyBanHang/khach-hang-dang-nhap"  >Đăng nhập</a></li>
+                            <li><a  href="/QuanLyBanHang/dang-ky-tai-khoan"  >Đăng ký tài khoản</a></li>
+                                <%if (khachHang != null) {%>
+                            <li><a  href="/QuanLyBanHang/sua-tai-khoan?id=<%= khachHang.id%>"  >Sửa tài khoản</a></li>
+                                <%  }
+                                %>
                         </ul>
                         <div class="cart box_1">
                             <a href="checkout.html">
