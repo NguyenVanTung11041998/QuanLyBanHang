@@ -7,10 +7,10 @@
         </h1>
         <ol class="breadcrumb">
             <li>
-                <i class="fa fa-dashboard"></i>  <a href="/QuanLyBanHang/LoaiSanPhamServlet">Dashboard</a>
+                <i class="fa fa-dashboard"></i>  <a href="/QuanLyBanHang/nha-san-xuat">Dashboard</a>
             </li>
             <li>
-                <i class=""></i>  <a href="/QuanLyBanHang/LoaiSanPhamServlet">Nhà sản xuất</a>
+                <i class=""></i>  <a href="/QuanLyBanHang/nha-san-xuat">Nhà sản xuất</a>
             </li>
             <li class="active">
                 <i class="fa fa-file"></i> Thêm mới
@@ -22,7 +22,7 @@
 </div>
 <div class="row">
     <div class="col-lg-12">
-        <form class="form-horizontal" action="/QuanLyBanHang/NhaSanXuat_CreateServlet" method="POST" enctype="multipart/form-data">
+        <form class="form-horizontal" action="/QuanLyBanHang/them-nha-san-xuat" method="POST">
 
             <div class="form-group">
                 <label for="inputEmail3" class="col-sm-2 control-label">Tên nhà sản xuất</label>

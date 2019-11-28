@@ -23,7 +23,7 @@ public class NhaSanXuatDAO extends INhaSanXuatDAOPOA{
         } catch (SQLException ex) {
             Logger.getLogger(NhaSanXuatDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
-        return (NhaSanXuat[]) nhaSanXuats.toArray();
+        return nhaSanXuats.toArray(new NhaSanXuat[nhaSanXuats.size()]);
     }
 
     @Override

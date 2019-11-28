@@ -1,3 +1,4 @@
+<%@page import="DTO.NhaSanXuat"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <jsp:include page="../SharedLayout/header.jsp"/>
 <div class="row">
@@ -5,7 +6,7 @@
         <h1 class="page-header">
             Danh sách nhà sản xuất
             <!-- <small>Subheading</small> -->
-            <a href="/QuanLyBanHang/NhaSanXuat_CreateServlet" class="btn btn-success">Thêm mới</a>
+            <a href="/QuanLyBanHang/them-nha-san-xuat" class="btn btn-success">Thêm mới</a>
         </h1>
         <div class="form-group row">
             <form action="" method="POST">
@@ -17,7 +18,7 @@
         </div>
         <ol class="breadcrumb">
             <li>
-                <i class="fa fa-dashboard"></i>  <a href="/QuanLyBanHang/NhaSanXuatServlet">Dashboard</a>
+                <i class="fa fa-dashboard"></i>  <a href="/QuanLyBanHang/nha-san-xuat">Dashboard</a>
             </li>
             <li class="active">
                 <i class="fa fa-file"></i> Nhà sản xuất
@@ -40,18 +41,20 @@
                     </tr>
                 </thead>
                 <tbody>
-
-                    <tr>
-                        <td><?php echo $i; ?></td>
-                        <td>Nike</td>
-                        <td>Bình thường</td>
-                        <td>Không có ảnh</td>
+                    <% NhaSanXuat[] nhaSanXuats = (NhaSanXuat[]) request.getAttribute("data");
+                        int i = 0;
+                        for (NhaSanXuat item : nhaSanXuats) {%> 
+                    <tr class="row_<%= item.maNSX%>">
+                        <td><%= ++i%></td>
+                        <td><%= item.tenNSX%></td>
+                        <td><%= item.thongTin%></td>
+                        <td><img src="<%= item.logo%>" alt="" style="height: 80px; width: 80px;" /></td>
                         <td>
-                            <a href="/QuanLyBanHang/NhaSanXuat_EditServlet" class="btn btn-success"><i class="fa fa-edit"></i>Sửa</a>
+                            <a href="/QuanLyBanHang/sua-nha-san-xuat?id=<%= item.maNSX%>" class="btn btn-success"><i class="fa fa-edit"></i>Sửa</a>
                             <a href="#" class="btn btn-danger" onClick="return confirmAction()"><i class="fa fa-times"></i>Xóa</a>
                         </td>
                     </tr>
-
+                    <%}%> 
                 </tbody>
             </table>
 

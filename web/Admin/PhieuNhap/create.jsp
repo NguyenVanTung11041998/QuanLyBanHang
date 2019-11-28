@@ -33,7 +33,7 @@
 </div>
 <div class="row">
     <div class="col-lg-12">
-        <form class="form-horizontal" action="/QuanLyBanHang/PhieuNhap_CreateServlet" method="POST" enctype="multipart/form-data">
+        <form class="form-horizontal" action="/QuanLyBanHang/PhieuNhap_CreateServlet" method="POST">
             <input type="hidden" name="txtSoLuong" id="txtSoLuong" />
             <div class="form-group col-md-6">
                 <label>Ngày lập</label>

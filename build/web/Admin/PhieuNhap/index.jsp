@@ -1,15 +1,16 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@page import="DTO.PhieuNhap"%> 
 <jsp:include page="../SharedLayout/header.jsp"/>
 <div class="row">
     <div class="col-lg-12">
         <h1 class="page-header">
             Danh sách phiếu nhập
             <!-- <small>Subheading</small> -->
-            <a href="/QuanLyBanHang/PhieuNhap_CreateServlet" class="btn btn-success">Thêm mới</a>
+            <a href="/QuanLyBanHang/them-phieu-nhap" class="btn btn-success">Thêm phiếu nhập</a>
         </h1>
         <ol class="breadcrumb">
             <li>
-                <i class="fa fa-dashboard"></i>  <a href="/QuanLyBanHang/PhieuNhapServlet">Dashboard</a>
+                <i class="fa fa-dashboard"></i>  <a href="/QuanLyBanHang/phieu-nhap">Phiếu Nhập</a>
             </li>
             <li class="active">
                 <i class="fa fa-file"></i> Phiếu nhập<!--  -->
@@ -39,13 +40,15 @@
                     </tr>
                 </thead>
                 <tbody>
-
-                    <tr>
-                        <td>1</td>
-                        <td>20/11/2019</td>
-                        <td>5000000 VND</td>
+                    <% PhieuNhap[] phieunhaps = (PhieuNhap[]) request.getAttribute("data");
+                        int i = 0;
+                        for (PhieuNhap item : phieunhaps) {%> 
+                    <tr id="row_<%= item.maPN%>">
+                        <td><%= ++i%></td>
+                        <td><%= item.ngayNhap%></td>
+                        <td><%= item.tongTienNhap%> VND</td>
                         <td>
-                            <a href="/QuanLyBanHang/PhieuNhapChiTietServlet?id=1" class="btn btn-success"><i class="fa fa-edit"></i>Xem chi tiết hóa đơn</a>
+                            <a href="/QuanLyBanHang/phieu-nhap-chi-tiet?id=<%= item.maPN%>" class="btn btn-success"><i class="fa fa-edit"></i>Xem chi tiết phiếu nhập</a>
                         </td>
                     </tr>
 
@@ -56,7 +59,7 @@
                 <nav aria-label="Page navigation">
                     <ul class="pagination">
                         <li>
-                            <a href="/QuanLyBanHang/PhieuNhapServlet?page=1" aria-label="Previous">
+                            <a href="/QuanLyBanHang/phieu-nhap?page=1" aria-label="Previous">
                                 <span aria-hidden="true">&laquo;</span>
                             </a>
                         </li>

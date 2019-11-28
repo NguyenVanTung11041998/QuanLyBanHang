@@ -68,6 +68,26 @@
         <servlet-name>KhachHang_EditServlet</servlet-name>
         <servlet-class>Controller.KhachHang_EditServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>PhieuNhapServlet</servlet-name>
+        <servlet-class>Admin.PhieuNhapServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>PhieuNhap_CreateServlet</servlet-name>
+        <servlet-class>Admin.PhieuNhap_CreateServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>SanPhamServlet</servlet-name>
+        <servlet-class>Admin.SanPhamServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>NhaSanXuatServlet</servlet-name>
+        <servlet-class>Admin.NhaSanXuatServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>NhaSanXuat_CreateServlet</servlet-name>
+        <servlet-class>Admin.NhaSanXuat_CreateServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>dispatcher</servlet-name>
         <url-pattern>*.htm</url-pattern>
@@ -127,6 +147,26 @@
     <servlet-mapping>
         <servlet-name>KhachHang_EditServlet</servlet-name>
         <url-pattern>/KhachHang_EditServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>PhieuNhapServlet</servlet-name>
+        <url-pattern>/PhieuNhapServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>PhieuNhap_CreateServlet</servlet-name>
+        <url-pattern>/PhieuNhap_CreateServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SanPhamServlet</servlet-name>
+        <url-pattern>/SanPhamServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>NhaSanXuatServlet</servlet-name>
+        <url-pattern>/NhaSanXuatServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>NhaSanXuat_CreateServlet</servlet-name>
+        <url-pattern>/NhaSanXuat_CreateServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

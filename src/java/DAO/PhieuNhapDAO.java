@@ -88,6 +88,5 @@ public class PhieuNhapDAO extends IPhieuNhapDAOPOA{
             Logger.getLogger(PhieuNhapDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
         return phieuNhaps.toArray(new PhieuNhap[phieuNhaps.size()]);
-    }
-    
+    }   
 }
