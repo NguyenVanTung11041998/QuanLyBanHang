@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-public class NhaSanXuatDAO extends INhaSanXuatDAOPOA{
+public class NhaSanXuatDAO extends INhaSanXuatDAOPOA {
 
     @Override
     public NhaSanXuat[] LayDanhSach() {
@@ -18,6 +18,7 @@ public class NhaSanXuatDAO extends INhaSanXuatDAOPOA{
         try {
             while (data.next()) {
                 NhaSanXuat x = new NhaSanXuat(data.getInt("MaNSX"), data.getString("TenNSX"), data.getString("ThongTin"), data.getString("Logo"));
+                x.logo = "Contents/Upload/" + x.logo;
                 nhaSanXuats.add(x);
             }
         } catch (SQLException ex) {
@@ -90,7 +91,35 @@ public class NhaSanXuatDAO extends INhaSanXuatDAOPOA{
 
     @Override
     public NhaSanXuat GetById(int id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        String query = "Select * From NhaSanXuat Where MaNSX = ?";
+        ResultSet data = DataProvider.getInstance().GetById(query, id);
+        try {
+            while(data.next())
+            {
+                NhaSanXuat x = new NhaSanXuat(data.getInt("MaNSX"), data.getString("TenNSX"), data.getString("ThongTin"), data.getString("Logo"));
+                x.logo = "Contents/Upload/" + x.logo;
+                return x;
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(NhaSanXuatDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
     }
-    
+
+    @Override
+    public boolean UpdateInfo(int id, String tenNSX, String thongTin) {
+        String query = "UPDATE dbo.NhaSanXuat SET TenNSX = ?, ThongTin = ? WHERE MaNSX = ?";
+        try {
+            PreparedStatement pre = DataProvider.getInstance().getConnection().prepareStatement(query);
+            pre.setString(1, tenNSX);
+            pre.setString(2, thongTin);
+            pre.setInt(3, id);
+            int result = pre.executeUpdate();
+            return result > 0;
+        } catch (SQLException ex) {
+            Logger.getLogger(NhaSanXuatDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return false;
+    }
+
 }

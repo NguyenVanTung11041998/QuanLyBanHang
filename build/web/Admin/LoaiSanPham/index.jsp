@@ -1,4 +1,5 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@page import="DTO.LoaiSanPham"%> 
 <jsp:include page="../SharedLayout/header.jsp"/>
 <!-- Page Heading -->
 <div class="row">
@@ -6,11 +7,11 @@
         <h1 class="page-header">
             Danh sách loại sản phẩm
             <!-- <small>Subheading</small> -->
-            <a href="/QuanLyBanHang/LoaiSanPham_CreateServlet" class="btn btn-success">Thêm mới</a>
+            <a href="/QuanLyBanHang/them-loai-san-pham" class="btn btn-success">Thêm mới</a>
         </h1>
         <ol class="breadcrumb">
             <li>
-                <i class="fa fa-dashboard"></i>  <a href="/QuanLyBanHang/LoaiSanPhamServlet">Dashboard</a>
+                <i class="fa fa-dashboard"></i>  <a href="/QuanLyBanHang/loai-san-pham">Dashboard</a>
             </li>
             <li class="active">
                 <i class="fa fa-file"></i> Loại sản phẩm<!--  -->
@@ -40,17 +41,19 @@
                     </tr>
                 </thead>
                 <tbody>
-   
-                    <tr>
-                        <td>1</td>
-                        <td>Áo</td>
-                        <td>Đồ nam</td>
+                    <% LoaiSanPham[] loaiSanPhams = (LoaiSanPham[]) request.getAttribute("data");
+                        int i = 0;
+                        for (LoaiSanPham item : loaiSanPhams) {%> 
+                    <tr id="row_<%= item.maLoaiSP%>">
+                        <td><%= ++i %></td>
+                        <td><%= item.tenLoai %></td>
+                        <td><%= item.tenDanhMuc %></td>
                         <td>
-                            <a href="/QuanLyBanHang/LoaiSanPham_EditServlet?id=1" class="btn btn-success"><i class="fa fa-edit"></i>Sửa</a>
-                            <a href="#" class="btn btn-danger" onClick="return confirmAction()"><i class="fa fa-times"></i>Xóa</a>
+                            <a href="/QuanLyBanHang/sua-loai-san-pham?id=1" class="btn btn-success"><i class="fa fa-edit"></i>Sửa</a>
+                            <a href="#" class="btn btn-danger btnDelete" data-id="<%= item.maLoaiSP%>"><i class="fa fa-times"></i>Xóa</a>
                         </td>
                     </tr>
-     
+                    <%}%> 
                 </tbody>
             </table>
 

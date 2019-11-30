@@ -22,7 +22,7 @@
 </div>
 <div class="row">
     <div class="col-lg-12">
-        <form class="form-horizontal" action="/QuanLyBanHang/them-nha-san-xuat" method="POST">
+        <form class="form-horizontal" action="/QuanLyBanHang/them-nha-san-xuat" method="POST" enctype="multipart/form-data">
 
             <div class="form-group">
                 <label for="inputEmail3" class="col-sm-2 control-label">Tên nhà sản xuất</label>

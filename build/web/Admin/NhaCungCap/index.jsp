@@ -57,7 +57,7 @@
                         <td><%= item.email %></td>
                         <td>
                             <a href="/QuanLyBanHang/sua-nha-cung-cap?id=<%= item.maNCC %>" class="btn btn-success"><i class="fa fa-edit"></i>Sửa</a>
-                            <a href="#" class="delete btn btn-danger" data-id="<%= item.maNCC %>"><i class="fa fa-times"></i>Xóa</a>
+                            <a href="#" class="btnDelete btn btn-danger" data-id="<%= item.maNCC %>"><i class="fa fa-times"></i>Xóa</a>
                         </td>
                     </tr>
                 <%}%> 
@@ -88,7 +88,7 @@
 </div>
 
 <script type="text/javascript">
-    $('.delete').click(function (e) {
+    $('.btnDelete').click(function (e) {
         e.preventDefault();
         if (confirm("Bạn có muốn xóa bản ghi này không?"))
         {

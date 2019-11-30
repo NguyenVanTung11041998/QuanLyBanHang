@@ -88,6 +88,22 @@
         <servlet-name>NhaSanXuat_CreateServlet</servlet-name>
         <servlet-class>Admin.NhaSanXuat_CreateServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>NhaSanXuat_EditServlet</servlet-name>
+        <servlet-class>Admin.NhaSanXuat_EditServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>NhaSanXuat_DeleteServlet</servlet-name>
+        <servlet-class>Admin.NhaSanXuat_DeleteServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>LoaiSanPhamServlet</servlet-name>
+        <servlet-class>Admin.LoaiSanPhamServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>LoaiSanPham_CreateServlet</servlet-name>
+        <servlet-class>Admin.LoaiSanPham_CreateServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>dispatcher</servlet-name>
         <url-pattern>*.htm</url-pattern>
@@ -167,6 +183,22 @@
     <servlet-mapping>
         <servlet-name>NhaSanXuat_CreateServlet</servlet-name>
         <url-pattern>/NhaSanXuat_CreateServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>NhaSanXuat_EditServlet</servlet-name>
+        <url-pattern>/NhaSanXuat_EditServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>NhaSanXuat_DeleteServlet</servlet-name>
+        <url-pattern>/NhaSanXuat_DeleteServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>LoaiSanPhamServlet</servlet-name>
+        <url-pattern>/LoaiSanPhamServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>LoaiSanPham_CreateServlet</servlet-name>
+        <url-pattern>/LoaiSanPham_CreateServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

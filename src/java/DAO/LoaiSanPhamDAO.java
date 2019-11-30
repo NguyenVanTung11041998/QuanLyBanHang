@@ -10,15 +10,14 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class LoaiSanPhamDAO extends ILoaiSanPhamDAOPOA {
-
     @Override
     public LoaiSanPham[] LayDanhSach() {
-        String query = "Select * From LoaiSanPham";
+        String query = "Select MaLoaiSP, TenLoai, dbo.LoaiSanPham.MaDanhMuc, TenDanhMuc From LoaiSanPham Inner Join DanhMuc On LoaiSanPham.MaDanhMuc = DanhMuc.MaDanhMuc";
         ArrayList<LoaiSanPham> loaiSanPhams = new ArrayList<>();
         try {
             ResultSet data = DataProvider.getInstance().GetData(query);
             while (data.next()) {
-                LoaiSanPham x = new LoaiSanPham(data.getInt("MaLoaiSP"), data.getString("TenLoai"), data.getInt("MaDanhMuc"));
+                LoaiSanPham x = new LoaiSanPham(data.getInt("MaLoaiSP"), data.getString("TenLoai"), data.getInt("MaDanhMuc"), data.getString("TenDanhMuc"));
                 loaiSanPhams.add(x);
             }
         } catch (SQLException ex) {
@@ -78,7 +77,7 @@ public class LoaiSanPhamDAO extends ILoaiSanPhamDAOPOA {
         ArrayList<LoaiSanPham> loaiSanPhams = new ArrayList<>();
         try {
             while (data.next()) {
-                LoaiSanPham x = new LoaiSanPham(data.getInt("MaLoaiSP"), data.getString("TenLoai"), data.getInt("MaDanhMuc"));
+                LoaiSanPham x = new LoaiSanPham(data.getInt("MaLoaiSP"), data.getString("TenLoai"), data.getInt("MaDanhMuc"), data.getString("TenDanhMuc"));
                 loaiSanPhams.add(x);
             }
         } catch (SQLException ex) {

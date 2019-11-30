@@ -35,6 +35,7 @@ module DTO
         long maLoaiSP;
         string tenLoai;
         long maDanhMuc;
+        string tenDanhMuc;
     };
 
     struct SanPham
@@ -175,6 +176,7 @@ module Corba_DAO
         boolean Create(in DTO::NhaSanXuat x);
         boolean Update(in DTO::NhaSanXuat x);
         boolean Delete(in long id);
+        boolean UpdateInfo(in long id, in string tenNSX, in string thongTin);
         NhaSanXuats TimKiem(in string search);
         DTO::NhaSanXuat GetById(in long id);
     };

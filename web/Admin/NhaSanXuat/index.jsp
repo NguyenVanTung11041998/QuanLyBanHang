@@ -51,7 +51,7 @@
                         <td><img src="<%= item.logo%>" alt="" style="height: 80px; width: 80px;" /></td>
                         <td>
                             <a href="/QuanLyBanHang/sua-nha-san-xuat?id=<%= item.maNSX%>" class="btn btn-success"><i class="fa fa-edit"></i>Sửa</a>
-                            <a href="#" class="btn btn-danger" onClick="return confirmAction()"><i class="fa fa-times"></i>Xóa</a>
+                            <a href="#" class="btn btn-danger btnDelete" data-id="<%= item.maNSX %>""><i class="fa fa-times"></i>Xóa</a>
                         </td>
                     </tr>
                     <%}%> 
@@ -82,6 +82,29 @@
 </div>
 
 <script type="text/javascript">
+    $('.btnDelete').click(function (e) {
+        e.preventDefault();
+        if (confirm("Bạn có muốn xóa bản ghi này không?"))
+        {
+            var x = $(this);
+            var id = x.data('id');
+            $.ajax({
+                url: '/QuanLyBanHang/NhaSanXuat_DeleteServlet',
+                method: 'Post',
+                data: {id: id},
+                success: function (result) {
+                    if (result)
+                    {
+                        var rowDelete = x.parent().parent();
+                        rowDelete.remove();
+                        alert("Xóa bản ghi thành công!");
+                    } else
+                        alert("Không thể xóa bản ghi! Vì đã tồn tại trong sản phẩm!");
+                }
+            });
+        }
+    });
+    
     function LoadData(query) {
         $.ajax({
             url: "Admin/Controller/Producer/fetch.php",

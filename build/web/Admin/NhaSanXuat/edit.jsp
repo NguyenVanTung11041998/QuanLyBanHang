@@ -1,4 +1,6 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@page import="DTO.NhaSanXuat"%>
+<% NhaSanXuat x = (NhaSanXuat)request.getAttribute("data"); %>
 <jsp:include page="../SharedLayout/header.jsp"/>
 <div class="row">
     <div class="col-lg-12">
@@ -7,10 +9,10 @@
         </h1>
         <ol class="breadcrumb">
             <li>
-                <i class="fa fa-dashboard"></i>  <a href="/QuanLyBanHang/NhaSanXuatServlet">Dashboard</a>
+                <i class="fa fa-dashboard"></i>  <a href="/QuanLyBanHang/nha-san-xuat">Dashboard</a>
             </li>
             <li>
-                <i class=""></i>  <a href="/QuanLyBanHang/NhaSanXuatServlet">Nhà sản xuất</a>
+                <i class=""></i>  <a href="/QuanLyBanHang/nha-san-xuat">Nhà sản xuất</a>
             </li>
             <li class="active">
                 <i class="fa fa-file"></i> Sửa thông tin
@@ -22,19 +24,19 @@
 </div>
 <div class="row">
     <div class="col-lg-12">
-        <form class="form-horizontal" action="/QuanLyBanHang/NhaSanXuat_EditServlet" method="POST" enctype="multipart/form-data">
+        <form class="form-horizontal" action="/QuanLyBanHang/sua-nha-san-xuat?id=<%= x.maNSX %>" method="POST" enctype="multipart/form-data">
 
             <div class="form-group">
                 <label for="inputEmail3" class="col-sm-2 control-label">Tên nhà sản xuất</label>
                 <div class="col-sm-8">
-                    <input type="text" class="form-control" id="" placeholder="Tên nhà sản xuất" name="txtTenNSX" required="required"  value="">
+                    <input type="text" class="form-control" id="" placeholder="Tên nhà sản xuất" name="txtTenNSX" required="required"  value="<%= x.tenNSX %>">
                 </div>
             </div>
 
             <div class="form-group">
                 <label for="inputEmail3" class="col-sm-2 control-label">Thông tin</label>
                 <div class="col-sm-8">
-                    <input type="text" class="form-control" id="" placeholder="Thông tin" name="txtThongTin" required="required"  value="">
+                    <input type="text" class="form-control" id="" placeholder="Thông tin" name="txtThongTin" required="required"  value="<%= x.thongTin %>">
                 </div>
             </div>
             
@@ -42,7 +44,7 @@
                 <label for="inputEmail3" class="col-sm-2 control-label">Logo</label>
                 <div class="col-sm-3">
                     <input type="file" class="form-control" id="logo" name="txtLogo">
-                    <div class="show_file"><img src=""></div>
+                    <div class="show_file"><img src="<%= x.logo %>"></div>
                 </div>
             </div>
 
