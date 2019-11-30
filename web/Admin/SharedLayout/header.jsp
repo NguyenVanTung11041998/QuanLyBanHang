@@ -118,25 +118,25 @@
                             <a href="nha-cung-cap"><i class="fa fa-fw fa-dashboard"></i> Nhà cung cấp</a>
                         </li>
                         <li>
-                            <a href="LoaiSanPhamServlet"><i class="fa fa-list"></i> Loại sản phẩm</a>
+                            <a href="loai-san-pham"><i class="fa fa-list"></i> Loại sản phẩm</a>
                         </li>
                         <li>
-                            <a href="SanPhamServlet"><i class="fa fa-database"></i> Sản phẩm</a> 
+                            <a href="san-pham"><i class="fa fa-database"></i> Sản phẩm</a> 
                         </li>
                         <li>
-                            <a href="KhachHangServlet"><i class="fa fa-database"></i> Khách hàng</a>
+                            <a href="khach-hang"><i class="fa fa-database"></i> Khách hàng</a>
                         </li>
                         <li>
-                            <a href="HoaDonServlet"><i class="fa fa-database"></i> Quản lý đơn hàng</a>
+                            <a href="hoa-don"><i class="fa fa-database"></i> Quản lý đơn hàng</a>
                         </li>
                         <li>
-                            <a href="NhaSanXuatServlet"><i class="fa fa-fw fa-edit"></i> Nhà sản xuất</a>
+                            <a href="nha-san-xuat"><i class="fa fa-fw fa-edit"></i> Nhà sản xuất</a>
                         </li>
                         <li>
-                            <a href="PhieuNhapServlet"><i class="fa fa-fw fa-desktop"></i> Quản lý nhập xuất</a>
+                            <a href="phieu-nhap"><i class="fa fa-fw fa-desktop"></i> Quản lý nhập xuất</a>
                         </li>
                         <li>
-                            <a href="DanhMucServlet"><i class="fa fa-fw fa-wrench"></i> Quản lý danh mục</a>
+                            <a href="danh-muc"><i class="fa fa-fw fa-wrench"></i> Quản lý danh mục</a>
                         </li>
                     </ul>
                 </div>

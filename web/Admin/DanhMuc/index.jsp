@@ -7,11 +7,11 @@
         <h1 class="page-header">
             Danh sách danh mục
             <!-- <small>Subheading</small> -->
-            <a href="/QuanLyBanHang/DanhMuc_CreateServlet" class="btn btn-success">Thêm mới</a>
+            <a href="/QuanLyBanHang/them-danh-muc" class="btn btn-success">Thêm mới</a>
         </h1>
         <ol class="breadcrumb">
             <li>
-                <i class="fa fa-dashboard"></i>  <a href="/QuanLyBanHang/DanhMucServlet">Dashboard</a>
+                <i class="fa fa-dashboard"></i>  <a href="/QuanLyBanHang/danh-muc">Dashboard</a>
             </li>
             <li class="active">
                 <i class="fa fa-file"></i> Danh mục
@@ -47,7 +47,7 @@
                         <td><%= ++i%></td>
                         <td><%= item.tenDanhMuc%></td>
                         <td>
-                            <a href="/QuanLyBanHang/DanhMuc_EditServlet?id=<%= item.maDanhMuc%>" class="btn btn-success"><i class="fa fa-edit"></i>Sửa</a>
+                            <a href="/QuanLyBanHang/sua-danh-muc?id=<%= item.maDanhMuc%>" class="btn btn-success"><i class="fa fa-edit"></i>Sửa</a>
                             <a href="#" class="delete btn btn-danger" data-id="<%= item.maDanhMuc %>"><i class="fa fa-times"></i>Xóa</a>
                         </td>
                     </tr>
@@ -90,7 +90,7 @@
                 method: 'Post',
                 data: {id: id},
                 success: function (result) {
-                    if (result)
+                    if (result === "true")
                     {
                         var rowDelete = x.parent().parent();
                         rowDelete.remove();

@@ -13,13 +13,12 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet(urlPatterns = { "/them-loai-san-pham" })
-public class LoaiSanPham_CreateServlet extends HttpServlet {
+@WebServlet(urlPatterns = {"/sua-loai-san-pham"})
+public class LoaiSanPham_EditServlet extends HttpServlet {
+
     private LoaiSanPhamDAO loaiSanPhamDAO = new LoaiSanPhamDAO();
     private DanhMucDAO danhMucDAO = new DanhMucDAO();
 
-    public LoaiSanPham_CreateServlet() {
-    }
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -27,8 +26,16 @@ public class LoaiSanPham_CreateServlet extends HttpServlet {
         request.setCharacterEncoding("utf-8");
         DanhMuc[] danhMucs = danhMucDAO.LayDanhSach();
         request.setAttribute("data", danhMucs);
-        RequestDispatcher dispatcher = request.getRequestDispatcher("Admin/LoaiSanPham/create.jsp");
-        dispatcher.forward(request, response);
+        int id = Integer.parseInt(request.getParameter("id"));
+        LoaiSanPham x = loaiSanPhamDAO.GetById(id);
+        if (x != null) {
+            request.setAttribute("model", x);
+            RequestDispatcher dispatcher = request.getRequestDispatcher("Admin/LoaiSanPham/edit.jsp");
+            dispatcher.forward(request, response);
+        } else {
+            PrintWriter out = response.getWriter();
+            out.print("<script>alert(\"Không có loại sản phẩm cần sửa\"); location.href=\"/QuanLyBanHang/loai-san-pham\";</script>");
+        }
     }
 
     @Override
@@ -38,20 +45,15 @@ public class LoaiSanPham_CreateServlet extends HttpServlet {
         request.setCharacterEncoding("utf-8");
         String tenLoai = request.getParameter("txtTenLoaiSP");
         String maDanhMucString = request.getParameter("cmbMaDanhMuc");
-        PrintWriter out = response.getWriter();
-        if(maDanhMucString.equals(""))
-        {
-            out.print("<script>alert(\"Bạn chưa chọn danh mục\"); location.href=\"/QuanLyBanHang/them-loai-san-pham\";</script>");
-            return;
-        }
         int maDanhMuc = Integer.parseInt(maDanhMucString);
-        LoaiSanPham x = new LoaiSanPham(0, tenLoai, maDanhMuc, "");
-        boolean result = loaiSanPhamDAO.Create(x);
-        
+        int id = Integer.parseInt(request.getParameter("id"));
+        LoaiSanPham x = new LoaiSanPham(id, tenLoai, maDanhMuc, "");
+        boolean result = loaiSanPhamDAO.Update(x);
+        PrintWriter out = response.getWriter();
         if (result)
-            out.print("<script>alert(\"Thêm thành công\"); location.href=\"/QuanLyBanHang/loai-san-pham\";</script>");
+            out.print("<script>alert(\"Sửa thành công\"); location.href=\"/QuanLyBanHang/loai-san-pham\";</script>");
         else
-            out.print("<script>alert(\"Thêm thất bại\")</script>");
+            out.print("<script>alert(\"Sửa thất bại\")</script>");
     }
 
     @Override

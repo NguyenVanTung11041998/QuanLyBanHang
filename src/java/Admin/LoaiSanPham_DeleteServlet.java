@@ -1,6 +1,6 @@
 package Admin;
 
-import DAO.DanhMucDAO;
+import DAO.LoaiSanPhamDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -8,14 +8,13 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-public class DanhMuc_DeleteServlet extends HttpServlet {
+public class LoaiSanPham_DeleteServlet extends HttpServlet {
 
-    private DanhMucDAO danhMucDAO = new DanhMucDAO();
-
+    private LoaiSanPhamDAO loaiSanPhamDAO = new LoaiSanPhamDAO();
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-
+        
     }
 
     @Override
@@ -24,7 +23,7 @@ public class DanhMuc_DeleteServlet extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         request.setCharacterEncoding("utf-8");
         int id = Integer.parseInt(request.getParameter("id"));
-        boolean result = danhMucDAO.Delete(id);
+        boolean result = loaiSanPhamDAO.Delete(id);
         PrintWriter out = response.getWriter();
         out.print(result);
     }

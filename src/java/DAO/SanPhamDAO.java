@@ -104,4 +104,20 @@ public class SanPhamDAO extends ISanPhamDAOPOA {
         return sanPhams.toArray(new SanPham[sanPhams.size()]);
     }
 
+    @Override
+    public SanPham GetById(int id) {
+        String query = "Select * From SanPham Where MaSP = ?";
+        ResultSet data = DataProvider.getInstance().GetById(query, id);
+        try {
+            while(data.next())
+            {
+                SanPham x = new SanPham(data.getInt("MaSP"), data.getString("TenSP"), data.getFloat("DonGia"), data.getString("NgayCapNhat"), data.getString("MoTa"), data.getString("HinhAnh"), data.getInt("SoLuongTon"), data.getInt("MaNCC"), data.getInt("MaNSX"), data.getInt("MaLoaiSP"), data.getBoolean("TrangThai"));
+                return x;
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(SanPhamDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
+    }
+
 }

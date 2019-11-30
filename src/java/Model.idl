@@ -198,6 +198,7 @@ module Corba_DAO
         boolean Update(in DTO::SanPham x);
         boolean Delete(in long id);
         SanPhams TimKiem(in string search);
+        DTO::SanPham GetById(in long id);
     };
 
     interface IPhieuNhapChiTietDAO

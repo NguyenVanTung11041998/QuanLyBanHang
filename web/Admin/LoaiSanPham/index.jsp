@@ -45,11 +45,11 @@
                         int i = 0;
                         for (LoaiSanPham item : loaiSanPhams) {%> 
                     <tr id="row_<%= item.maLoaiSP%>">
-                        <td><%= ++i %></td>
-                        <td><%= item.tenLoai %></td>
-                        <td><%= item.tenDanhMuc %></td>
+                        <td><%= ++i%></td>
+                        <td><%= item.tenLoai%></td>
+                        <td><%= item.tenDanhMuc%></td>
                         <td>
-                            <a href="/QuanLyBanHang/sua-loai-san-pham?id=1" class="btn btn-success"><i class="fa fa-edit"></i>Sửa</a>
+                            <a href="/QuanLyBanHang/sua-loai-san-pham?id=<%= item.maLoaiSP%>" class="btn btn-success"><i class="fa fa-edit"></i>Sửa</a>
                             <a href="#" class="btn btn-danger btnDelete" data-id="<%= item.maLoaiSP%>"><i class="fa fa-times"></i>Xóa</a>
                         </td>
                     </tr>
@@ -81,6 +81,29 @@
 </div>
 
 <script type="text/javascript">
+    $('.btnDelete').click(function (e) {
+        e.preventDefault();
+        if (confirm("Bạn có muốn xóa bản ghi này không?"))
+        {
+            var x = $(this);
+            var id = x.data('id');
+            $.ajax({
+                url: '/QuanLyBanHang/LoaiSanPham_DeleteServlet',
+                method: 'Post',
+                data: {id: id},
+                success: function (result) {
+                    if (result === "true")
+                    {
+                        var rowDelete = x.parent().parent();
+                        rowDelete.remove();
+                        alert("Xóa bản ghi thành công!");
+                    } else
+                        alert("Không thể xóa bản ghi! Vì đã tồn tại trong sản phẩm!");
+                }
+            });
+        }
+    });
+
     function LoadData(query) {
         $.ajax({
             url: "Admin/Controller/CategoryProduct/fetch.php",

@@ -59,7 +59,7 @@ public class LoaiSanPhamDAO extends ILoaiSanPhamDAOPOA {
 
     @Override
     public boolean Delete(int id) {
-        String query = "Delete LoaiSanPham Where MaLoai = ?";
+        String query = "Delete LoaiSanPham Where MaLoaiSP = ?";
         try {
             PreparedStatement pre = DataProvider.getInstance().getConnection().prepareStatement(query);
             pre.setInt(1, id);
@@ -88,7 +88,18 @@ public class LoaiSanPhamDAO extends ILoaiSanPhamDAOPOA {
 
     @Override
     public LoaiSanPham GetById(int id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        String query = "Select MaLoaiSP, TenLoai, dbo.LoaiSanPham.MaDanhMuc, TenDanhMuc From LoaiSanPham Inner Join DanhMuc On LoaiSanPham.MaDanhMuc = DanhMuc.MaDanhMuc Where MaLoaiSP = ?";
+        ResultSet data = DataProvider.getInstance().GetById(query, id);
+        try {
+            while(data.next())
+            {
+                LoaiSanPham x = new LoaiSanPham(data.getInt("MaLoaiSP"), data.getString("TenLoai"), data.getInt("MaDanhMuc"), data.getString("TenDanhMuc"));
+                return x;
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(LoaiSanPhamDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
     }
 
 }

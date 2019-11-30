@@ -93,7 +93,7 @@
                 method: 'Post',
                 data: {id: id},
                 success: function (result) {
-                    if (result)
+                    if (result === "true")
                     {
                         var rowDelete = x.parent().parent();
                         rowDelete.remove();
