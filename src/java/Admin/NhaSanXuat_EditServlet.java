@@ -32,8 +32,7 @@ public class NhaSanXuat_EditServlet extends HttpServlet {
         LOGGER.log(Level.INFO, "Part Header = {0}", partHeader);
         for (String content : part.getHeader("content-disposition").split(";")) {
             if (content.trim().startsWith("filename")) {
-                return content.substring(
-                        content.indexOf('=') + 1).trim().replace("\"", "");
+                return content.substring(content.indexOf('=') + 1).trim().replace("\"", "");
             }
         }
         return null;
@@ -52,7 +51,7 @@ public class NhaSanXuat_EditServlet extends HttpServlet {
             dispatcher.forward(request, response);
         } else {
             PrintWriter out = response.getWriter();
-            out.print("<script>alert(\"Không có nhà sản xuất cần sửa\"); location.href=\"/QuanLyBanHang/nha-san-xuatp\";</script>");
+            out.print("<script>alert(\"Không có nhà sản xuất cần sửa\"); location.href=\"/QuanLyBanHang/nha-san-xuat\";</script>");
         }
     }
 

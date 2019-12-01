@@ -1,10 +1,11 @@
+<%@page import="DTO.SanPham"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <jsp:include page="../SharedLayout/header.jsp"/>
 <div class="row">
     <div class="col-lg-12">
         <h1 class="page-header">
             Danh sách sản phẩm
-            <a href="/QuanLyBanHang/SanPham_CreateServlet" class="btn btn-success">Thêm mới</a>
+            <a href="/QuanLyBanHang/them-san-pham" class="btn btn-success">Thêm mới</a>
         </h1>
         <div class="form-group row">
             <form action="" method="GET">
@@ -16,7 +17,7 @@
         </div>
         <ol class="breadcrumb">
             <li>
-                <i class="fa fa-dashboard"></i>  <a href="/QuanLyBanHang/SanPhamServlet">Dashboard</a>
+                <i class="fa fa-dashboard"></i>  <a href="/QuanLyBanHang/san-pham">Dashboard</a>
             </li>
             <li class="active">
                 <i class="fa fa-file"></i> Sản phẩm<!--  -->
@@ -35,7 +36,6 @@
                         <th>Tên sản phẩm</th>
                         <th>Đơn giá</th>
                         <th>Ngày cập nhật</th>
-                        <th>Mô tả</th>
                         <th>Hình ảnh</th>
                         <th>Số lượng tồn</th>
                         <th>Tình trạng</th>
@@ -43,23 +43,23 @@
                     </tr>
                 </thead>
                 <tbody>
-
-                    <tr>
-                        <td>1</td>
-                        <td>Áo cộc tay</td>
-                        <td>500000 VNĐ</td>
-                        <td>20/11/2019</td>
-                        <td>Đẹp</td>
-                        <td><img src="" style="width: 80px; height: 80px" alt=""></td>
-                        <td>300</td>
-                        <td>Active
-                        </td>
+                    <% SanPham[] sanPhams = (SanPham[]) request.getAttribute("data");
+                        int i = 0;
+                        for (SanPham item : sanPhams) {%>
+                    <tr id="row_<%= item.maSP%>">
+                        <td><%= ++i%></td>
+                        <td><%= item.tenSP%></td>
+                        <td><%= (int) item.donGia%> VNĐ</td>
+                        <td><%= item.ngayCapNhat%></td>
+                        <td><img src="Contents/Upload/<%= item.hinhAnh%>" style="width: 80px; height: 80px" alt=""></td>
+                        <td><%= item.soLuongTon%></td>
+                        <td><a href="#" class="btn btn-warning btnChangeStatus" data-id="<%= item.maSP%>"><i class="fa fa-air-freshener"></i><%= item.trangThai ? "Active" : "Block"%></a></td>
                         <td>
-                            <a href="/QuanLyBanHang/SanPham_EditServlet" class="btn btn-success"><i class="fa fa-edit"></i>Sửa</a>
-                            <a href="#" class="btn btn-danger" onClick="return confirmAction()"><i class="fa fa-times"></i>Xóa</a>
+                            <a href="/QuanLyBanHang/sua-san-pham?id=<%= item.maSP%>" class="btn btn-success"><i class="fa fa-edit"></i>Sửa</a>
+                            <a href="#" class="btn btn-danger btnDelete" data-id="<%= item.maSP%>"><i class="fa fa-times"></i>Xóa</a>
                         </td>
                     </tr>
-
+                    <%}%> 
                 </tbody>
             </table>
 
@@ -86,6 +86,46 @@
     </div>
 </div>
 <script type="text/javascript">
+    $('.btnDelete').click(function (e) {
+        e.preventDefault();
+        if (confirm("Bạn có muốn xóa bản ghi này không?"))
+        {
+            var x = $(this);
+            var id = x.data('id');
+            $.ajax({
+                url: '/QuanLyBanHang/SanPham_DeleteServlet',
+                method: 'Post',
+                data: {id: id},
+                success: function (result) {
+                    if (result === "true")
+                    {
+                        var rowDelete = x.parent().parent();
+                        rowDelete.remove();
+                        alert("Xóa bản ghi thành công!");
+                    } else
+                        alert("Không thể xóa bản ghi!! Bạn có thể block sản phẩm!");
+                }
+            });
+        }
+    });
+    
+    $(".btnChangeStatus").click(function (e) {
+        e.preventDefault();
+        var x = $(this);
+        var id = x.data("id");
+        $.ajax({
+           url: "/QuanLyBanHang/SanPham_ChangeStatusServlet",
+           method: "Post",
+           data: { id:id },
+           success: function(result) {
+               if(result === "true")
+                   x.text("Active");
+               else
+                   x.text("Block");
+           }
+        });
+    });
+
     function LoadData(query) {
         $.ajax({
             url: "Admin/Controller/Product/fetch.php",

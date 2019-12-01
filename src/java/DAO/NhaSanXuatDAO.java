@@ -18,7 +18,6 @@ public class NhaSanXuatDAO extends INhaSanXuatDAOPOA {
         try {
             while (data.next()) {
                 NhaSanXuat x = new NhaSanXuat(data.getInt("MaNSX"), data.getString("TenNSX"), data.getString("ThongTin"), data.getString("Logo"));
-                x.logo = "Contents/Upload/" + x.logo;
                 nhaSanXuats.add(x);
             }
         } catch (SQLException ex) {
@@ -97,7 +96,6 @@ public class NhaSanXuatDAO extends INhaSanXuatDAOPOA {
             while(data.next())
             {
                 NhaSanXuat x = new NhaSanXuat(data.getInt("MaNSX"), data.getString("TenNSX"), data.getString("ThongTin"), data.getString("Logo"));
-                x.logo = "Contents/Upload/" + x.logo;
                 return x;
             }
         } catch (SQLException ex) {

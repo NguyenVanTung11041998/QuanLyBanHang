@@ -32,7 +32,8 @@ public class PhieuNhapDAO extends IPhieuNhapDAOPOA{
         String query = "INSERT INTO PhieuNhap(NgayNhap, TongTienNhap) VALUES (?, ?)";
         try {
             PreparedStatement pre = DataProvider.getInstance().getConnection().prepareStatement(query);
-            pre.setDate(1, new java.sql.Date(new java.util.Date(x.ngayNhap).getTime()));
+            //pre.setDate(1, new java.sql.Date(new java.util.Date(x.ngayNhap).getTime()));
+            pre.setString(1, x.ngayNhap);
             pre.setFloat(2, x.tongTienNhap);
             int result = pre.executeUpdate();
             return result > 0;
@@ -89,4 +90,20 @@ public class PhieuNhapDAO extends IPhieuNhapDAOPOA{
         }
         return phieuNhaps.toArray(new PhieuNhap[phieuNhaps.size()]);
     }   
+
+    @Override
+    public PhieuNhap GetPhieuNhapCuoiCung() {
+        String query = "SELECT TOP 1 * FROM dbo.PhieuNhap ORDER BY MaPN DESC";
+        ResultSet data = DataProvider.getInstance().GetData(query);
+        try {
+            while(data.next())
+            {
+                PhieuNhap x = new PhieuNhap(data.getInt("MaPN"), data.getString("NgayNhap"), data.getFloat("TongTienNhap"));
+                return x;
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(PhieuNhapDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
+    }
 }

@@ -44,7 +44,7 @@
                 <label for="inputEmail3" class="col-sm-2 control-label">Logo</label>
                 <div class="col-sm-3">
                     <input type="file" class="form-control" id="logo" name="txtLogo">
-                    <div class="show_file"><img src="<%= x.logo %>"></div>
+                    <div class="show_file"><img src="Contents/Upload/<%= x.logo %>"></div>
                 </div>
             </div>
 

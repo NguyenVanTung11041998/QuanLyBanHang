@@ -1,3 +1,4 @@
+<%@page import="DTO.PhieuNhapChiTiet"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <jsp:include page="../SharedLayout/header.jsp"/>
 <div class="row">
@@ -7,7 +8,7 @@
         </h1>
         <ol class="breadcrumb">
             <li>
-                <i class="fa fa-dashboard"></i>  <a href="/QuanLyBanHang/PhieuNhapServlet">Dashboard</a>
+                <i class="fa fa-dashboard"></i>  <a href="/QuanLyBanHang/phieu-nhap">Dashboard</a>
             </li>
             <li class="active">
                 <i class="fa fa-file"></i> Phiếu nhập
@@ -29,14 +30,16 @@
                     </tr>
                 </thead>
                 <tbody>
-
+                    <% PhieuNhapChiTiet[] phieuNhapChiTiets = (PhieuNhapChiTiet[]) request.getAttribute("data");
+                        int i = 0;
+                        for (PhieuNhapChiTiet item : phieuNhapChiTiets) {%> 
                     <tr>
-                        <td>1</td>
-                        <td>Áo dài</td>
-                        <td>500</td>
-                        <td>30000000 VND</td>
+                        <td><%=++i%></td>
+                        <td><%=item.tenSP %></td>
+                        <td><%= item.soLuongNhap %> </td>
+                        <td><%= (int)item.donGiaNhap %> VND</td>
                     </tr>
- 
+                    <%}%>
                 </tbody>
             </table>
 

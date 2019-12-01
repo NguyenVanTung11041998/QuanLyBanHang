@@ -1,3 +1,4 @@
+<%@page import="java.time.LocalDate"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page import="DTO.PhieuNhap"%> 
 <jsp:include page="../SharedLayout/header.jsp"/>
@@ -19,7 +20,7 @@
         <div class="form-group row">
             <form action="" method="GET">
                 <div class="col-sm-4">
-                    <input id="datePicker" type="date" value="" style="height: 2.5em; width:100%" /> 
+                    <input id="datePicker" type="date" value="<%=LocalDate.now()%>" style="height: 2.5em; width:100%" /> 
                 </div>
                 <button type="button" id="search" class="btn btn-primary">Search</button>
             </form>
@@ -46,12 +47,12 @@
                     <tr id="row_<%= item.maPN%>">
                         <td><%= ++i%></td>
                         <td><%= item.ngayNhap%></td>
-                        <td><%= item.tongTienNhap%> VND</td>
+                        <td><%= (int)item.tongTienNhap%> VND</td>
                         <td>
                             <a href="/QuanLyBanHang/phieu-nhap-chi-tiet?id=<%= item.maPN%>" class="btn btn-success"><i class="fa fa-edit"></i>Xem chi tiết phiếu nhập</a>
                         </td>
                     </tr>
-
+                    <%}%>
                 </tbody>
             </table>
 

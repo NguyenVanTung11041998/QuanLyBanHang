@@ -30,19 +30,18 @@ public class SanPhamDAO extends ISanPhamDAOPOA {
     @Override
     public boolean Create(SanPham x) {
 
-        String query = "INSERT INTO dbo.SanPham (TenSP, DonGia, NgayCapNhat, MoTa, HinhAnh, SoLuongTon, MaNCC, MaNSX, MaLoaiSP, TrangThai) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        String query = "INSERT INTO dbo.SanPham (TenSP, DonGia, NgayCapNhat, MoTa, HinhAnh, SoLuongTon, MaNCC, MaNSX, MaLoaiSP, TrangThai) VALUES (?, ?, GetDATE(), ?, ?, ?, ?, ?, ?, ?)";
         try {
             PreparedStatement pre = DataProvider.getInstance().getConnection().prepareStatement(query);
             pre.setString(1, x.tenSP);
             pre.setFloat(2, x.donGia);
-            pre.setDate(3, new Date(new java.util.Date(x.ngayCapNhat).getTime()));
-            pre.setString(4, x.moTa);
-            pre.setString(5, x.hinhAnh);
-            pre.setInt(6, x.soLuongTon);
-            pre.setInt(7, x.maNCC);
-            pre.setInt(8, x.maNSX);
-            pre.setInt(9, x.maLoaiSP);
-            pre.setBoolean(10, x.trangThai);
+            pre.setString(3, x.moTa);
+            pre.setString(4, x.hinhAnh);
+            pre.setInt(5, x.soLuongTon);
+            pre.setInt(6, x.maNCC);
+            pre.setInt(7, x.maNSX);
+            pre.setInt(8, x.maLoaiSP);
+            pre.setBoolean(9, x.trangThai);
             int result = pre.executeUpdate();
             return result > 0;
         } catch (SQLException ex) {
@@ -53,20 +52,19 @@ public class SanPhamDAO extends ISanPhamDAOPOA {
 
     @Override
     public boolean Update(SanPham x) {
-        String query = "UPDATE dbo.SanPham SET TenSP = ?, DonGia = ?, NgayCapNhat = ?, MoTa = ?, HinhAnh = ?, SoLuongTon = ?, MaNCC = ?, MaNSX = ?, MaLoaiSP = ?, TrangThai = ? WHERE MaSP = ?";
+        String query = "UPDATE dbo.SanPham SET TenSP = ?, DonGia = ?, NgayCapNhat = GetDATE(), MoTa = ?, HinhAnh = ?, SoLuongTon = ?, MaNCC = ?, MaNSX = ?, MaLoaiSP = ?, TrangThai = ? WHERE MaSP = ?";
         try {
             PreparedStatement pre = DataProvider.getInstance().getConnection().prepareStatement(query);
             pre.setString(1, x.tenSP);
             pre.setFloat(2, x.donGia);
-            pre.setDate(3, new Date(new java.util.Date(x.ngayCapNhat).getTime()));
-            pre.setString(4, x.moTa);
-            pre.setString(5, x.hinhAnh);
-            pre.setInt(6, x.soLuongTon);
-            pre.setInt(7, x.maNCC);
-            pre.setInt(8, x.maNSX);
-            pre.setInt(9, x.maLoaiSP);
-            pre.setInt(10, x.maSP);
-            pre.setBoolean(10, x.trangThai);
+            pre.setString(3, x.moTa);
+            pre.setString(4, x.hinhAnh);
+            pre.setInt(5, x.soLuongTon);
+            pre.setInt(6, x.maNCC);
+            pre.setInt(7, x.maNSX);
+            pre.setInt(8, x.maLoaiSP);
+            pre.setBoolean(9, x.trangThai);
+            pre.setInt(10, x.maSP);    
             int result = pre.executeUpdate();
             return result > 0;
         } catch (SQLException ex) {
@@ -77,7 +75,7 @@ public class SanPhamDAO extends ISanPhamDAOPOA {
 
     @Override
     public boolean Delete(int id) {
-        String query = "Delete SanPham Where ID = ?";
+        String query = "Delete SanPham Where MaSP = ?";
         try {
             PreparedStatement pre = DataProvider.getInstance().getConnection().prepareStatement(query);
             pre.setInt(1, id);
@@ -120,4 +118,15 @@ public class SanPhamDAO extends ISanPhamDAOPOA {
         return null;
     }
 
+    @Override
+    public void UpdateStatus(int id) {
+        String query = "Update SanPham Set TrangThai = ~TrangThai Where MaSP = ?";
+        try {
+            PreparedStatement pre = DataProvider.getInstance().getConnection().prepareStatement(query);
+            pre.setInt(1, id);
+            pre.executeUpdate();
+        } catch (SQLException ex) {
+            Logger.getLogger(KhachHangDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
 }

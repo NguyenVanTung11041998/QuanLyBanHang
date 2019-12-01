@@ -1,3 +1,5 @@
+<%@page import="java.time.LocalDate"%>
+<%@page import="DTO.SanPham"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <jsp:include page="../SharedLayout/header.jsp"/>
 
@@ -28,16 +30,16 @@
             </li>
         </ol>
         <div class="clearfix"></div>
-        
+
     </div>
 </div>
 <div class="row">
     <div class="col-lg-12">
-        <form class="form-horizontal" action="/QuanLyBanHang/PhieuNhap_CreateServlet" method="POST">
+        <form class="form-horizontal" action="/QuanLyBanHang/them-phieu-nhap" method="POST">
             <input type="hidden" name="txtSoLuong" id="txtSoLuong" />
             <div class="form-group col-md-6">
                 <label>Ngày lập</label>
-                <input id="datePicker" type="date" name="txtNgayNhap" value=""/>
+                <input id="datePicker" type="date" name="txtNgayNhap" value="<%=LocalDate.now()%>"/>
             </div>
             <table cellspacing="0" border="0" class="table tablePhieuNhapChiTiet">
                 <tr class="trHeader" data-id="-1">
@@ -48,7 +50,10 @@
                 <tr class="trAppend" data-id="-1" style="display: none;">
                     <td>
                         <select class="cmbSanPham" style="width: 13em; height: 1.75em;">
-                                <option value="">----------</option>';   
+                            <% SanPham[] sanPhams = (SanPham[]) request.getAttribute("dataSanPham");
+                                for (SanPham item : sanPhams) {%>
+                            <option value="<%=item.maSP%>"><%= item.tenSP%></option>
+                            <%}%>
                         </select>
                     </td>
                     <td><input class="txtSoLuongNhap" type="number" value="0" /></td>
@@ -58,7 +63,9 @@
                 <tr class="trAppended" data-id="0">
                     <td>
                         <select class="cmbSanPham" style="width: 13em; height: 1.75em;" name="MaSP_0">
-                            <option value="">-------------------</option>
+                            <%for (SanPham item : sanPhams) {%>
+                            <option value="<%=item.maSP%>"><%= item.tenSP%></option>
+                            <%}%>
                         </select>
                     </td>
                     <td><input class="txtSoLuongNhap" type="number" value="0" name="SoLuongNhap_0" /></td>
@@ -77,20 +84,20 @@
         document.cookie = "RowCount = " + 1;
     });
 
-    $('.btnThem').click(function() {
+    $('.btnThem').click(function () {
         var idCuoi = $('.tablePhieuNhapChiTiet').find("tr:last-child").attr("data-id");
         var i = parseInt(idCuoi) + 1;
         var tdNoiDung = $('.trAppend').html();
-        var trNoiDung = '<tr class="trAppended" data-id="' + i +'">' + tdNoiDung + '</tr>';
+        var trNoiDung = '<tr class="trAppended" data-id="' + i + '">' + tdNoiDung + '</tr>';
         $('.tablePhieuNhapChiTiet').append(trNoiDung);
         LoadIDLenThe();
         var rowCount = $('.trAppended').length;
         document.cookie = "RowCount = " + rowCount;
     });
 
-    function LoadIDLenThe() 
+    function LoadIDLenThe()
     {
-        $('.trAppended').each(function() {
+        $('.trAppended').each(function () {
             var id = $(this).attr("data-id");
             var nameMaSP = "MaSP_" + id;
             var nameSoLuongNhap = "SoLuongNhap_" + id;
@@ -105,9 +112,9 @@
     {
         var idDau = $('.tablePhieuNhapChiTiet').find(".trHeader").attr("data-id");
         var i = parseInt(idDau);
-        $('.trAppended').each(function() {
+        $('.trAppended').each(function () {
             var id = ++i;
-            console.log("?"+ id + "?");
+            console.log("?" + id + "?");
             $(this).attr("data-id", id);
             var nameMaSP = "MaSP_" + id;
             var nameSoLuongNhap = "SoLuongNhap_" + id;
@@ -120,13 +127,9 @@
         document.cookie = "RowCount = " + rowCount;
     }
 
-    // $('body').delegate(".btnDelete", "click", function() {
-    //     $(this).closest('.trAppended').remove();
-    //     CapNhatID();
-    // });
-    $(".btnDelete").click(function() {
-        $(this).closest('.trAppended').remove();
-        CapNhatID();
-    });
+     $('body').delegate(".btnDelete", "click", function() {
+         $(this).closest('.trAppended').remove();
+         CapNhatID();
+     });
 </script>
 <jsp:include page="../SharedLayout/footer.jsp"/>

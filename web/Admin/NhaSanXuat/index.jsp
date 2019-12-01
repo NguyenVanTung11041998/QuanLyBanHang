@@ -48,7 +48,7 @@
                         <td><%= ++i%></td>
                         <td><%= item.tenNSX%></td>
                         <td><%= item.thongTin%></td>
-                        <td><img src="<%= item.logo%>" alt="" style="height: 80px; width: 80px;" /></td>
+                        <td><img src="Contents/Upload/<%= item.logo%>" alt="" style="height: 80px; width: 80px;" /></td>
                         <td>
                             <a href="/QuanLyBanHang/sua-nha-san-xuat?id=<%= item.maNSX%>" class="btn btn-success"><i class="fa fa-edit"></i>Sửa</a>
                             <a href="#" class="btn btn-danger btnDelete" data-id="<%= item.maNSX %>""><i class="fa fa-times"></i>Xóa</a>

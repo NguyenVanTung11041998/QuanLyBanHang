@@ -13,14 +13,14 @@ public class GioHangDAO extends IGioHangDAOPOA {
 
     @Override
     public GioHang[] LayDanhSach(int idKhachHang) {
-        String query = "Select * From GioHang Where IDKhachHang = ?";
+        String query = "SELECT ID, IDKhachHang, GioHang.MaSP, SoLuongDat, GioHang.TrangThai, TenSP FROM dbo.GioHang INNER JOIN dbo.SanPham ON SanPham.MaSP = GioHang.MaSP Where IDKhachHang = ?";
         ArrayList<GioHang> gioHangs = new ArrayList<>();
         try {
             PreparedStatement pre = DataProvider.getInstance().getConnection().prepareStatement(query);
             pre.setInt(1, idKhachHang);
             ResultSet data = pre.executeQuery();
             while (data.next()) {
-                GioHang x = new GioHang(data.getInt("ID"), data.getInt("IDKhachHang"), data.getInt("MaSP"), data.getInt("SoLuongDat"), data.getBoolean("TrangThai"));
+                GioHang x = new GioHang(data.getInt("ID"), data.getInt("IDKhachHang"), data.getInt("MaSP"), data.getInt("SoLuongDat"), data.getBoolean("TrangThai"), data.getString("TenSP"));
                 gioHangs.add(x);
             }
         } catch (SQLException ex) {

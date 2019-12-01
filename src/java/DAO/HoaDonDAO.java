@@ -14,12 +14,12 @@ public class HoaDonDAO extends IHoaDonDAOPOA{
 
     @Override
     public HoaDon[] LayDanhSach() {
-        String query = "Select * From HoaDon";
+        String query = "SELECT MaHD, NgayDat, IDKhachHang, TongTien, DaThanhToan, HoTen FROM dbo.HoaDon INNER JOIN dbo.KhachHang ON KhachHang.ID = HoaDon.IDKhachHang";
         ArrayList<HoaDon> hoaDons = new ArrayList<>();
         try {
             ResultSet data = DataProvider.getInstance().GetData(query);
             while (data.next()) {
-                HoaDon x = new HoaDon(data.getInt("MaHD"), data.getString("NgayDat"), data.getInt("IDKhachHang"), data.getFloat("TongTien"), data.getBoolean("DaThanhToan"));
+                HoaDon x = new HoaDon(data.getInt("MaHD"), data.getString("NgayDat"), data.getInt("IDKhachHang"), data.getFloat("TongTien"), data.getBoolean("DaThanhToan"), data.getString("HoTen"));
                 hoaDons.add(x);
             }
         } catch (SQLException ex) {
@@ -82,7 +82,7 @@ public class HoaDonDAO extends IHoaDonDAOPOA{
 
     @Override
     public HoaDon[] TimKiem(String date) {
-        String query = "Select * From HoaDon Where NgayDat = ?";
+        String query = "SELECT MaHD, NgayDat, IDKhachHang, TongTien, DaThanhToan, HoTen FROM dbo.HoaDon INNER JOIN dbo.KhachHang ON KhachHang.ID = HoaDon.IDKhachHang Where NgayDat = ?";
         ArrayList<HoaDon> hoaDons = new ArrayList<>();
         try {
             PreparedStatement pre = DataProvider.getInstance().getConnection().prepareStatement(query);
@@ -90,7 +90,7 @@ public class HoaDonDAO extends IHoaDonDAOPOA{
             ResultSet data = pre.executeQuery();
             while(data.next())
             {
-                HoaDon x = new HoaDon(data.getInt("MaHD"), data.getString("NgayDat"), data.getInt("IDKhachHang"), data.getFloat("TongTien"), data.getBoolean("DaThanhToan"));
+                HoaDon x = new HoaDon(data.getInt("MaHD"), data.getString("NgayDat"), data.getInt("IDKhachHang"), data.getFloat("TongTien"), data.getBoolean("DaThanhToan"), data.getString("HoTen"));
                 hoaDons.add(x);
             }
         } catch (SQLException ex) {

@@ -70,6 +70,7 @@ module DTO
         long idKhachHang;
         float tongTien;
         boolean daThanhToan;
+        string tenKhachHang;
     };
 
     struct HoaDonChiTiet
@@ -78,6 +79,7 @@ module DTO
         long maSP;
         long soLuongMua;
         float donGia;
+        string tenSP;
     };
 
     struct PhieuNhap
@@ -93,6 +95,7 @@ module DTO
         long maSP;
         long soLuongNhap;
         float donGiaNhap;
+        string tenSP;
     };
 
     struct GioHang
@@ -102,6 +105,7 @@ module DTO
         long maSP;
         long soLuongDat;
         boolean trangThai;
+        string tenSP;
     };
 };
 
@@ -199,6 +203,7 @@ module Corba_DAO
         boolean Delete(in long id);
         SanPhams TimKiem(in string search);
         DTO::SanPham GetById(in long id);
+        void UpdateStatus(in long id);
     };
 
     interface IPhieuNhapChiTietDAO
@@ -217,6 +222,7 @@ module Corba_DAO
         boolean Update(in long id, in string ngayNhap);
         boolean Delete(in long id);
         PhieuNhaps TimKiem(in string date);
+        DTO::PhieuNhap GetPhieuNhapCuoiCung();
     };
 
     interface IGioHangDAO

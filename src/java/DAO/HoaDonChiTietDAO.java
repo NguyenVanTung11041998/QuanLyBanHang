@@ -13,7 +13,7 @@ public class HoaDonChiTietDAO extends IHoaDonChiTietDAOPOA{
 
     @Override
     public HoaDonChiTiet[] LayDanhSachHoaDonChiTiet(int idHoaDon) {
-        String query = "Select * From HoaDonChiTiet Where MaHD = ?";
+        String query = "SELECT MaHD, HoaDonChiTiet.MaSP, SoLuongMua, HoaDonChiTiet.DonGia, TenSP FROM dbo.HoaDonChiTiet INNER JOIN dbo.SanPham ON SanPham.MaSP = HoaDonChiTiet.MaSP Where MaHD = ?";
         ArrayList<HoaDonChiTiet> hoaDonChiTiets = new ArrayList<>();
         try {
             PreparedStatement pre = DataProvider.getInstance().getConnection().prepareStatement(query);
@@ -21,7 +21,7 @@ public class HoaDonChiTietDAO extends IHoaDonChiTietDAOPOA{
             ResultSet data = pre.executeQuery();
             while(data.next())
             {
-                HoaDonChiTiet x = new HoaDonChiTiet(data.getInt("MaHD"), data.getInt("MaSP"), data.getInt("SoLuongMua"), data.getFloat("DonGia"));
+                HoaDonChiTiet x = new HoaDonChiTiet(data.getInt("MaHD"), data.getInt("MaSP"), data.getInt("SoLuongMua"), data.getFloat("DonGia"), data.getString("TenSP"));
                 hoaDonChiTiets.add(x);
             }
         } catch (SQLException ex) {

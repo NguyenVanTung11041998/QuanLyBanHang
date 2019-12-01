@@ -13,7 +13,7 @@ public class PhieuNhapChiTietDAO extends IPhieuNhapChiTietDAOPOA{
 
     @Override
     public PhieuNhapChiTiet[] LayDanhSach(int idPhieuNhap) {
-        String query = "Select * From PhieuNhapChiTiet Where MaPN = ?";
+        String query = "SELECT MaPN, PhieuNhapChiTiet.MaSP, SoLuongNhap, DonGiaNhap, TenSP FROM dbo.PhieuNhapChiTiet INNER JOIN dbo.SanPham ON SanPham.MaSP = PhieuNhapChiTiet.MaSP Where MaPN = ?";
         ArrayList<PhieuNhapChiTiet> phieuNhapChiTiets = new ArrayList<>();
         try {
             PreparedStatement pre = DataProvider.getInstance().getConnection().prepareStatement(query);
@@ -21,7 +21,7 @@ public class PhieuNhapChiTietDAO extends IPhieuNhapChiTietDAOPOA{
             ResultSet data = pre.executeQuery();
             while(data.next())
             {
-                PhieuNhapChiTiet x = new PhieuNhapChiTiet(data.getInt("MaPN"), data.getInt("MaSP"), data.getInt("SoLuongNhap"), data.getFloat("DonGiaNhap"));
+                PhieuNhapChiTiet x = new PhieuNhapChiTiet(data.getInt("MaPN"), data.getInt("MaSP"), data.getInt("SoLuongNhap"), data.getFloat("DonGiaNhap"), data.getString("TenSP"));
                 phieuNhapChiTiets.add(x);
             }
         } catch (SQLException ex) {
