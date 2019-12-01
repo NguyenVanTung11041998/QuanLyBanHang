@@ -102,4 +102,20 @@ public class LoaiSanPhamDAO extends ILoaiSanPhamDAOPOA {
         return null;
     }
 
+    @Override
+    public LoaiSanPham[] LayDanhSachTheoDanhMuc(int id) {
+        String query = "Select MaLoaiSP, TenLoai, dbo.LoaiSanPham.MaDanhMuc, TenDanhMuc From LoaiSanPham Inner Join DanhMuc On LoaiSanPham.MaDanhMuc = DanhMuc.MaDanhMuc Where DanhMuc.MaDanhMuc = ?";
+        ArrayList<LoaiSanPham> loaiSanPhams = new ArrayList<>();
+        try {
+            ResultSet data = DataProvider.getInstance().GetById(query, id);
+            while (data.next()) {
+                LoaiSanPham x = new LoaiSanPham(data.getInt("MaLoaiSP"), data.getString("TenLoai"), data.getInt("MaDanhMuc"), data.getString("TenDanhMuc"));
+                loaiSanPhams.add(x);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(DanhMucDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return loaiSanPhams.toArray(new LoaiSanPham[loaiSanPhams.size()]);
+    }
+
 }

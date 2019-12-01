@@ -129,4 +129,39 @@ public class SanPhamDAO extends ISanPhamDAOPOA {
             Logger.getLogger(KhachHangDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+
+    @Override
+    public SanPham[] GetListSanPhamMoiNhat() {
+        ArrayList<SanPham> sanPhams = new ArrayList<>();
+        ResultSet data = DataProvider.getInstance().GetData("Select Top 20 * From SanPham");
+        try {
+            while (data.next()) {
+                SanPham x = new SanPham(data.getInt("MaSP"), data.getString("TenSP"), data.getFloat("DonGia"), data.getString("NgayCapNhat"), data.getString("MoTa"), data.getString("HinhAnh"), data.getInt("SoLuongTon"), data.getInt("MaNCC"), data.getInt("MaNSX"), data.getInt("MaLoaiSP"), data.getBoolean("TrangThai"));
+                sanPhams.add(x);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(KhachHangDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return sanPhams.toArray(new SanPham[sanPhams.size()]);
+    }
+
+    @Override
+    public SanPham[] GetListSanPhamTimKiem(String search) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public SanPham[] GetListSanPhamTheoLoaiSanPham(int id) {
+        ArrayList<SanPham> sanPhams = new ArrayList<>();
+        ResultSet data = DataProvider.getInstance().GetById("Select * From SanPham Where MaLoaiSP = ?", id);
+        try {
+            while (data.next()) {
+                SanPham x = new SanPham(data.getInt("MaSP"), data.getString("TenSP"), data.getFloat("DonGia"), data.getString("NgayCapNhat"), data.getString("MoTa"), data.getString("HinhAnh"), data.getInt("SoLuongTon"), data.getInt("MaNCC"), data.getInt("MaNSX"), data.getInt("MaLoaiSP"), data.getBoolean("TrangThai"));
+                sanPhams.add(x);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(KhachHangDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return sanPhams.toArray(new SanPham[sanPhams.size()]);
+    }
 }

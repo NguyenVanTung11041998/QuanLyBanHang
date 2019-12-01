@@ -132,6 +132,26 @@
         <servlet-name>PhieuNhapChiTietServlet</servlet-name>
         <servlet-class>Admin.PhieuNhapChiTietServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>HoaDonServlet</servlet-name>
+        <servlet-class>Admin.HoaDonServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>HoaDonChiTietServlet</servlet-name>
+        <servlet-class>Admin.HoaDonChiTietServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>SanPham_DanhSachServlet</servlet-name>
+        <servlet-class>Controller.SanPham_DanhSachServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>GioHangServlet</servlet-name>
+        <servlet-class>Controller.GioHangServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>SanPham_DetailServlet</servlet-name>
+        <servlet-class>Controller.SanPham_DetailServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>dispatcher</servlet-name>
         <url-pattern>*.htm</url-pattern>
@@ -255,6 +275,26 @@
     <servlet-mapping>
         <servlet-name>PhieuNhapChiTietServlet</servlet-name>
         <url-pattern>/PhieuNhapChiTietServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>HoaDonServlet</servlet-name>
+        <url-pattern>/HoaDonServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>HoaDonChiTietServlet</servlet-name>
+        <url-pattern>/HoaDonChiTietServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SanPham_DanhSachServlet</servlet-name>
+        <url-pattern>/SanPham_DanhSachServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>GioHangServlet</servlet-name>
+        <url-pattern>/GioHangServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SanPham_DetailServlet</servlet-name>
+        <url-pattern>/SanPham_DetailServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

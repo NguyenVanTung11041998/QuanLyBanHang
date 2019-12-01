@@ -1,4 +1,18 @@
+<%@page import="DTO.KhachHang"%>
+<%@page import="DAO.GioHangDAO"%>
+<%@page import="DAO.SanPhamDAO"%>
+<%@page import="DTO.SanPham"%>
+<%@page import="DTO.GioHang"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<% 
+    GioHang[] gioHangs = (GioHang[])request.getAttribute("data");
+    SanPhamDAO sanPhamDAO = new SanPhamDAO();
+    GioHangDAO gioHangDAO = new GioHangDAO();
+    KhachHang khachHang = (KhachHang)request.getAttribute("User");
+    int tongTien = khachHang != null ? (int)gioHangDAO.GetTongTienSanPhamTrongGioTheoKhachHang(khachHang.id) : 0;
+    int id = Integer.parseInt(request.getParameter("id"));
+%>
+<jsp:include page="../SharedLayout/header.jsp"/>
 <div class="container">
     <div class="check">
         <div class="col-md-9 cart-items">
@@ -18,21 +32,24 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <?php $stt=1; $sum = 0; foreach($_SESSION['cart'] as $key => $value):?>
+                    <% 
+                        int i = 0;
+                        for(GioHang item : gioHangs) { 
+                        SanPham sanPham = sanPhamDAO.GetById(item.maSP);
+                    %>
                     <tr>
-                        <td><?php echo $stt?></td>
-                        <td><?php echo $value['name']?></td>
-                        <td><img src="Upload/product/<?php echo $value['thumbar']?>" style="height:100px;" alt=""></td>
-                        <td><input type="number" name="qty" id="qty" class="form-control qty" value="<?php echo $value['qty'] ?>" style="width:70px" min=0></td>
-                        <td><?php echo FormatPrice($value['price'])?></td>
-                        <td><?php echo FormatPrice($value['qty']*$value['price'])?></td>
+                        <td><%=++i%></td>
+                        <td><%= sanPham.tenSP %></td>
+                        <td><img src="Contents/Upload/<%= sanPham.hinhAnh %>" style="height:100px;" alt=""></td>
+                        <td><input type="number" name="qty" id="qty" class="form-control qty" value="<%= item.soLuongDat %>" style="width:70px" min=0></td>
+                        <td><%= (int)sanPham.donGia %></td>
+                        <td><%= item.soLuongDat * (int)sanPham.donGia %></td>
                         <td>
-                            <a class="btn btn-danger" href="?controller=cart&action=remore&id=<?php echo $key?>">Xóa</a>
-                            <a class="btn btn-success updatecart" href="" data-key=<?php echo $key; ?>>Sửa</a>
+                            <a class="btn btn-danger" href="#">Xóa</a>
+                            <a class="btn btn-success updatecart" href="#" data-id=<%= item.id %>>Sửa</a>
                         </td>
                     </tr>
-                    <?php $sum += $value['price'] * $value['qty']; $_SESSION['sotien'] = $sum; ?>
-                    <?php $stt++; endforeach?>
+                    <%}%>
                 </tbody>
             </table>
         </div>  
@@ -41,7 +58,7 @@
             <div class="price-details"> 
                 <h3>Chi tiết giá</h3>
                 <span>Số tiền</span>
-                <span class="total1"><?php echo FormatPrice($_SESSION['sotien'])?></span>
+                <span class="total1"><%= tongTien %> VND</span>
                 <span>Thuế VAT</span>
                 <span class="total1">10%</span>
                 <div class="clearfix"></div>
@@ -50,17 +67,19 @@
                 <li class="last_price">
                     <h4>Tổng tiền</h4>
                 </li>
-                <li class="last_price"><span><?php $_SESSION['tong'] = $_SESSION['sotien'] * 110/100; echo FormatPrice($_SESSION['tong'])?></span></li>
+                <li class="last_price"><span><%= (int)(tongTien * 1.1) %> VND</span></li>
 
                 <div class="clearfix"> </div>
             </ul>
             <ul class="">
                 <li class="list-group-item clearfix">
-                    <a href="?controller=category&action=cate_pro&id=1" class="btn btn-success">Mua hàng tiếp</a>
-                    <a href="?controller=cart&action=pay" class="btn btn-success pay">Đặt hàng</a>
+                    <a href="/QuanLyBanHang/trang-chu" class="btn btn-success">Mua hàng tiếp</a>
+                    <a href="/QuanLyBanHang/dat-hang?id=<%=id%>" class="btn btn-success pay">Đặt hàng</a>
                 </li>
             </ul>
         </div>
         <div class="clearfix"> </div>
     </div>
 </div>
+
+<jsp:include page="../SharedLayout/footer.jsp"/>

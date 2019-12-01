@@ -193,6 +193,7 @@ module Corba_DAO
         boolean Delete(in long id);
         LoaiSanPhams TimKiem(in string search);
         DTO::LoaiSanPham GetById(in long id);
+        LoaiSanPhams LayDanhSachTheoDanhMuc(in long id);
     };
 
     interface ISanPhamDAO
@@ -204,6 +205,9 @@ module Corba_DAO
         SanPhams TimKiem(in string search);
         DTO::SanPham GetById(in long id);
         void UpdateStatus(in long id);
+        SanPhams GetListSanPhamMoiNhat();
+        SanPhams GetListSanPhamTimKiem(in string search);
+        SanPhams GetListSanPhamTheoLoaiSanPham(in long id);
     };
 
     interface IPhieuNhapChiTietDAO
@@ -231,5 +235,7 @@ module Corba_DAO
         boolean Create(in DTO::GioHang x);
         boolean Update(in DTO::GioHang x);
         boolean Delete(in long idKhachHang, in long maSP);
+        long GetSoLuongSanPhamTrongGioTheoKhachHang(in long id);
+        float GetTongTienSanPhamTrongGioTheoKhachHang(in long id);
     };
 };

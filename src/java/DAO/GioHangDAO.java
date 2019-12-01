@@ -77,4 +77,32 @@ public class GioHangDAO extends IGioHangDAOPOA {
         }
         return false;
     }
+
+    @Override
+    public int GetSoLuongSanPhamTrongGioTheoKhachHang(int id) {
+        String query = "Select Count(*) From GioHang Where IdKhachHang = ?";
+        ResultSet data = DataProvider.getInstance().GetById(query, id);
+        try {
+            while (data.next()) {
+                return data.getInt(0);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(GioHangDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return 0;
+    }
+
+    @Override
+    public float GetTongTienSanPhamTrongGioTheoKhachHang(int id) {
+        String query = "SELECT SUM(SoLuongDat * DonGia) FROM dbo.GioHang INNER JOIN dbo.SanPham ON SanPham.MaSP = GioHang.MaSP WHERE IDKhachHang = ?";
+        ResultSet data = DataProvider.getInstance().GetById(query, id);
+        try {
+            while (data.next()) {
+                return data.getFloat(0);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(GioHangDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return 0;
+    }
 }
