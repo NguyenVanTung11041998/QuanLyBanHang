@@ -29,5 +29,20 @@ public class HoaDonChiTietDAO extends IHoaDonChiTietDAOPOA{
         }
         return hoaDonChiTiets.toArray(new HoaDonChiTiet[hoaDonChiTiets.size()]);
     }
+
+    @Override
+    public void Insert(HoaDonChiTiet x) {
+        String query = "Insert into HoaDonChiTiet Values (?, ?, ?, ?)";
+        try {
+            PreparedStatement pre = DataProvider.getInstance().getConnection().prepareStatement(query);
+            pre.setInt(1, x.maHD);
+            pre.setInt(2, x.maSP);
+            pre.setInt(3, x.soLuongMua);
+            pre.setFloat(4, x.donGia);
+            pre.executeUpdate();
+        } catch (SQLException ex) {
+            Logger.getLogger(HoaDonChiTietDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
     
 }

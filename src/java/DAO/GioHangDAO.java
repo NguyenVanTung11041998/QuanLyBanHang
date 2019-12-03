@@ -48,13 +48,12 @@ public class GioHangDAO extends IGioHangDAOPOA {
 
     @Override
     public boolean Update(GioHang x) {
-        String query = "UPDATE dbo.GioHang SET SoLuongDat = ?, TrangThai = ? WHERE IDKhachHang = ? AND MaSP = ?";
+        String query = "UPDATE dbo.GioHang SET SoLuongDat = ?, TrangThai = ? WHERE ID = ?";
         try {
             PreparedStatement pre = DataProvider.getInstance().getConnection().prepareStatement(query);
             pre.setInt(1, x.soLuongDat);
             pre.setBoolean(2, x.trangThai);
-            pre.setInt(3, x.idKhachHang);
-            pre.setInt(4, x.maSP);
+            pre.setInt(3, x.id);
             int result = pre.executeUpdate();
             return result > 0;
         } catch (SQLException ex) {
@@ -64,12 +63,11 @@ public class GioHangDAO extends IGioHangDAOPOA {
     }
 
     @Override
-    public boolean Delete(int idKhachHang, int maSP) {
-        String query = "Delete GioHang Where IDKhachHang = ? AND MaSP = ?";
+    public boolean Delete(int id) {
+        String query = "Delete GioHang Where Id = ?";
         try {
             PreparedStatement pre = DataProvider.getInstance().getConnection().prepareStatement(query);
-            pre.setInt(1, idKhachHang);  
-            pre.setInt(2, maSP);
+            pre.setInt(1, id);  
             int result = pre.executeUpdate();
             return result > 0;
         } catch (SQLException ex) {
@@ -80,11 +78,11 @@ public class GioHangDAO extends IGioHangDAOPOA {
 
     @Override
     public int GetSoLuongSanPhamTrongGioTheoKhachHang(int id) {
-        String query = "Select Count(*) From GioHang Where IdKhachHang = ?";
+        String query = "Select Count(*) as N'Row' From GioHang Where IdKhachHang = ?";
         ResultSet data = DataProvider.getInstance().GetById(query, id);
         try {
             while (data.next()) {
-                return data.getInt(0);
+                return data.getInt("Row");
             }
         } catch (SQLException ex) {
             Logger.getLogger(GioHangDAO.class.getName()).log(Level.SEVERE, null, ex);
@@ -94,11 +92,11 @@ public class GioHangDAO extends IGioHangDAOPOA {
 
     @Override
     public float GetTongTienSanPhamTrongGioTheoKhachHang(int id) {
-        String query = "SELECT SUM(SoLuongDat * DonGia) FROM dbo.GioHang INNER JOIN dbo.SanPham ON SanPham.MaSP = GioHang.MaSP WHERE IDKhachHang = ?";
+        String query = "SELECT SUM(SoLuongDat * DonGia) AS 'A' FROM dbo.GioHang INNER JOIN dbo.SanPham ON SanPham.MaSP = GioHang.MaSP WHERE IDKhachHang = ?";
         ResultSet data = DataProvider.getInstance().GetById(query, id);
         try {
             while (data.next()) {
-                return data.getFloat(0);
+                return data.getFloat("A");
             }
         } catch (SQLException ex) {
             Logger.getLogger(GioHangDAO.class.getName()).log(Level.SEVERE, null, ex);

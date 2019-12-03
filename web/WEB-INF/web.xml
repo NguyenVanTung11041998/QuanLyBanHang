@@ -152,6 +152,26 @@
         <servlet-name>SanPham_DetailServlet</servlet-name>
         <servlet-class>Controller.SanPham_DetailServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>GioHang_CreateServlet</servlet-name>
+        <servlet-class>Controller.GioHang_CreateServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>GioHang_DeleteServlet</servlet-name>
+        <servlet-class>Controller.GioHang_DeleteServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>GioHang_EditServlet</servlet-name>
+        <servlet-class>Controller.GioHang_EditServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>HoaDon_OrderServlet</servlet-name>
+        <servlet-class>Controller.HoaDon_OrderServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>HoaDon_PayServlet</servlet-name>
+        <servlet-class>Admin.HoaDon_PayServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>dispatcher</servlet-name>
         <url-pattern>*.htm</url-pattern>
@@ -295,6 +315,26 @@
     <servlet-mapping>
         <servlet-name>SanPham_DetailServlet</servlet-name>
         <url-pattern>/SanPham_DetailServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>GioHang_CreateServlet</servlet-name>
+        <url-pattern>/GioHang_CreateServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>GioHang_DeleteServlet</servlet-name>
+        <url-pattern>/GioHang_DeleteServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>GioHang_EditServlet</servlet-name>
+        <url-pattern>/GioHang_EditServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>HoaDon_OrderServlet</servlet-name>
+        <url-pattern>/HoaDon_OrderServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>HoaDon_PayServlet</servlet-name>
+        <url-pattern>/HoaDon_PayServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

@@ -1,3 +1,4 @@
+<%@page import="DTO.HoaDonChiTiet"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <jsp:include page="../SharedLayout/header.jsp"/>
 <div class="row">
@@ -29,14 +30,16 @@
                     </tr>
                 </thead>
                 <tbody>
-
+                    <% HoaDonChiTiet[] hoaDonChiTiets = (HoaDonChiTiet[]) request.getAttribute("data");
+                        int i = 0;
+                        for (HoaDonChiTiet item : hoaDonChiTiets) {%> 
                     <tr>
-                        <td>1</td>
-                        <td>Tivi</td>
-                        <td>50</td>
-                        <td>5000000 VNĐ</td>
+                        <td><%=++i%></td>
+                        <td><%= item.tenSP%></td>
+                        <td><%= item.soLuongMua%></td>
+                        <td><%= (int) item.donGia%> VNĐ</td>
                     </tr>
-
+                    <%}%>
                 </tbody>
             </table>
 

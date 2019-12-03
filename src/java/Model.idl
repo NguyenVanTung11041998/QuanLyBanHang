@@ -141,6 +141,7 @@ module Corba_DAO
     interface IHoaDonChiTietDAO
     {
         HoaDonChiTiets LayDanhSachHoaDonChiTiet(in long idHoaDon);
+        void Insert(in DTO::HoaDonChiTiet x);
     };
     
     interface IHoaDonDAO
@@ -150,6 +151,9 @@ module Corba_DAO
         boolean Update(in DTO::HoaDon x);
         boolean ThanhToan(in long id);
         HoaDons TimKiem(in string date);
+        DTO::HoaDon GetHoaDonCuoiCungTheoKhachHang(in long idKhachHang);
+        DTO::HoaDon GetById(in long id);
+        void Pay(in long id);
     };
     
     interface IKhachHangDAO
@@ -234,7 +238,7 @@ module Corba_DAO
         GioHangs LayDanhSach(in long idKhachHang);
         boolean Create(in DTO::GioHang x);
         boolean Update(in DTO::GioHang x);
-        boolean Delete(in long idKhachHang, in long maSP);
+        boolean Delete(in long id);
         long GetSoLuongSanPhamTrongGioTheoKhachHang(in long id);
         float GetTongTienSanPhamTrongGioTheoKhachHang(in long id);
     };

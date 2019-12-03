@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-public class HoaDonDAO extends IHoaDonDAOPOA{
+public class HoaDonDAO extends IHoaDonDAOPOA {
 
     @Override
     public HoaDon[] LayDanhSach() {
@@ -30,13 +30,12 @@ public class HoaDonDAO extends IHoaDonDAOPOA{
 
     @Override
     public boolean Create(HoaDon x) {
-        String query = "INSERT INTO HoaDon(NgayDat, IDKhachHang, TongTien, DaThanhToan) VALUES (?, ?, ?, ?)";
+        String query = "INSERT INTO HoaDon(NgayDat, IDKhachHang, TongTien, DaThanhToan) VALUES (GETDATE(), ?, ?, ?)";
         try {
             PreparedStatement pre = DataProvider.getInstance().getConnection().prepareStatement(query);
-            pre.setDate(1, new java.sql.Date(new java.util.Date(x.ngayDat).getTime()));
-            pre.setInt(2, x.idKhachHang);
-            pre.setFloat(3, x.tongTien);
-            pre.setBoolean(4, x.daThanhToan);
+            pre.setInt(1, x.idKhachHang);
+            pre.setFloat(2, x.tongTien);
+            pre.setBoolean(3, x.daThanhToan);
             int result = pre.executeUpdate();
             return result > 0;
         } catch (SQLException ex) {
@@ -70,8 +69,7 @@ public class HoaDonDAO extends IHoaDonDAOPOA{
             query = "SELECT DaThanhToan FROM dbo.HoaDon WHERE MaHD = ?";
             pre.setInt(1, id);
             ResultSet data = DataProvider.getInstance().GetData(query);
-            while(data.next())
-            {
+            while (data.next()) {
                 return data.getBoolean("DaThanhToan");
             }
         } catch (SQLException ex) {
@@ -88,8 +86,7 @@ public class HoaDonDAO extends IHoaDonDAOPOA{
             PreparedStatement pre = DataProvider.getInstance().getConnection().prepareStatement(query);
             pre.setDate(1, new java.sql.Date(new java.util.Date(date).getTime()));
             ResultSet data = pre.executeQuery();
-            while(data.next())
-            {
+            while (data.next()) {
                 HoaDon x = new HoaDon(data.getInt("MaHD"), data.getString("NgayDat"), data.getInt("IDKhachHang"), data.getFloat("TongTien"), data.getBoolean("DaThanhToan"), data.getString("HoTen"));
                 hoaDons.add(x);
             }
@@ -97,5 +94,48 @@ public class HoaDonDAO extends IHoaDonDAOPOA{
             Logger.getLogger(HoaDonDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
         return hoaDons.toArray(new HoaDon[hoaDons.size()]);
+    }
+
+    @Override
+    public HoaDon GetHoaDonCuoiCungTheoKhachHang(int idKhachHang) {
+        String query = "SELECT TOP 1 MaHD, NgayDat, IDKhachHang, TongTien, DaThanhToan, HoTen FROM dbo.HoaDon INNER JOIN dbo.KhachHang ON KhachHang.ID = HoaDon.IDKhachHang WHERE IdKhachHang = ? ORDER BY MaHD DESC";
+        ResultSet data = DataProvider.getInstance().GetById(query, idKhachHang);
+        try {
+            while (data.next()) {
+                HoaDon x = new HoaDon(data.getInt("MaHD"), data.getString("NgayDat"), data.getInt("IDKhachHang"), data.getFloat("TongTien"), data.getBoolean("DaThanhToan"), data.getString("HoTen"));
+                return x;
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(HoaDonDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
+    }
+
+    @Override
+    public HoaDon GetById(int id) {
+        String query = "SELECT MaHD, NgayDat, IDKhachHang, TongTien, DaThanhToan, HoTen FROM dbo.HoaDon INNER JOIN dbo.KhachHang ON KhachHang.ID = HoaDon.IDKhachHang Where MaHD = ?";
+        ResultSet data = DataProvider.getInstance().GetById(query, id);
+        try {
+            while(data.next())
+            {
+                HoaDon x = new HoaDon(data.getInt("MaHD"), data.getString("NgayDat"), data.getInt("IDKhachHang"), data.getFloat("TongTien"), data.getBoolean("DaThanhToan"), data.getString("HoTen"));
+                return x;
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(HoaDonDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
+    }
+
+    @Override
+    public void Pay(int id) {
+        String query = "Update HoaDon Set DaThanhToan = ~DaThanhToan Where MaHD = ?";
+        try {
+            PreparedStatement pre = DataProvider.getInstance().getConnection().prepareStatement(query);
+            pre.setInt(1, id);
+            pre.executeUpdate();
+        } catch (SQLException ex) {
+            Logger.getLogger(HoaDonDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 }

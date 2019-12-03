@@ -1,9 +1,11 @@
+<%@page import="DTO.KhachHang"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%
     int id = Integer.parseInt(request.getParameter("id"));
     DAO.SanPhamDAO sanPhamDAO = new DAO.SanPhamDAO();
     DTO.SanPham sanPham = sanPhamDAO.GetById(id);
     DTO.SanPham[] sanPhams = sanPhamDAO.GetListSanPhamTheoLoaiSanPham(sanPham.maLoaiSP);
+    KhachHang khachHang = (KhachHang)request.getAttribute("KhachHang");
 %>
 <jsp:include page="../SharedLayout/header.jsp"/>
 <!--content-->
@@ -159,9 +161,9 @@
                             </div>
                         </a>	
                     </div>
-                    <p class="tun"><%= item.tenSP %></p>
-                    <p class="tun"><%= item.moTa %></p>
-                    <a href="/QuanLyBanHang/gio-hang?id=<%= item.maSP %>" class="item_add"><p class="number item_price"><i> </i><%= (int)item.donGia %> VND</p></a>						
+                    <p class="tun"><%= item.tenSP%></p>
+                    <p class="tun"><%= item.moTa%></p>
+                    <a href="#" data-id="<%= item.maSP%>" class="item_add btnAddSanPham"><p class="number item_price"><i> </i><%= (int) item.donGia%> VND</p></a>						
                 </div>
                 <%}%>
                 <div class="clearfix"> </div>
@@ -172,5 +174,28 @@
     </div>
 </div>
 
+<script>
+    $("body").delegate(".btnAddSanPham", "click", function (e) {
+        e.preventDefault();
+        var btn = $(this);
+        var id = btn.data("id");
+        $.ajax({
+            url: "/QuanLyBanHang/them-gio-hang",
+            method: "Post",
+            data: {id: id},
+            success: function (result) {
+                if (result === "true")
+                {
+                    alert("Đặt hàng thành công!");
+                    location.href = "/QuanLyBanHang/gio-hang?id=" + <%= khachHang != null ? khachHang.id : 0%>;
+                }
+                else
+                {
+                    alert("Đặt hàng thất bại. Bạn phải đăng nhập trước khi đặt hàng!");
+                }
+            }
+        });
+    });
+</script>
 
 <jsp:include page="../SharedLayout/footer.jsp"/>

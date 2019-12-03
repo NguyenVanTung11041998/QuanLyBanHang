@@ -1,9 +1,4 @@
-<%-- 
-    Document   : index
-    Created on : Nov 20, 2019, 8:21:55 AM
-    Author     : Nguyen Van Tung
---%>
-
+<%@page import="DTO.HoaDon"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <jsp:include page="../SharedLayout/header.jsp"/>
 
@@ -48,18 +43,20 @@
                     </tr>
                 </thead>
                 <tbody>
-
+                    <% HoaDon[] hoaDons = (HoaDon[]) request.getAttribute("data");
+                        int i = 0;
+                        for (HoaDon item : hoaDons) {%>
                     <tr>
-                        <td>1</td>
-                        <td>20/11/2019</td>
-                        <td>Tùng đẹp trai</td>
-                        <td>500000 VND</td>
-                        <td><a href="#" class="btn btn-primary">Đã xử lý</a></td>
+                        <td><%= ++i%></td>
+                        <td><%= item.ngayDat %></td>
+                        <td><%= item.tenKhachHang %></td>
+                        <td><%= (int)item.tongTien %> VND</td>
+                        <td><a href="#" data-id="<%= item.maHD %>" class="btn btn-primary btnXuLy"><%= item.daThanhToan ? "Đã xử lý" : "Chưa xử lý" %></a></td>
                         <td>
-                            <a href="/QuanLyBanHang/HoaDonChiTietServlet?id=1" class="btn btn-success">Xem chi tiết</a>
+                            <a href="/QuanLyBanHang/hoa-don-chi-tiet?id=<%= item.maHD %>" class="btn btn-success">Xem chi tiết</a>
                         </td>
                     </tr>
-
+                    <%}%>
                 </tbody>
             </table>
 
@@ -104,6 +101,28 @@
             LoadData(search);
         else
             LoadData();
+    });
+    
+    $("body").delegate(".btnXuLy", "click", function(e) {
+        e.preventDefault();
+        var btn = $(this);
+        var id = btn.data("id");
+        $.ajax({
+            url: "/QuanLyBanHang/xu-ly-hoa-don",
+            method: "Post",
+            data: {id: id},
+            success: function (result) {
+                if (result === "true")
+                {
+                    alert("Thay đổi thành công!");
+                    btn.text("Đã xử lý")
+                }
+                else
+                {
+                    btn.text("Chưa xử lý")
+                }
+            }
+        });
     });
 </script>
 

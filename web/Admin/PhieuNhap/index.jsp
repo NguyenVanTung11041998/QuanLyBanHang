@@ -45,7 +45,7 @@
                         int i = 0;
                         for (PhieuNhap item : phieunhaps) {%> 
                     <tr id="row_<%= item.maPN%>">
-                        <td><%= ++i%></td>
+                        <td><%=++i%></td>
                         <td><%= item.ngayNhap%></td>
                         <td><%= (int)item.tongTienNhap%> VND</td>
                         <td>

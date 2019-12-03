@@ -24,7 +24,8 @@ public class GioHangServlet extends HttpServlet {
         HttpSession session = request.getSession();
         KhachHang khachHang = (KhachHang)session.getAttribute("User");
         request.setAttribute("KhachHang", khachHang);
-        int id = Integer.parseInt(request.getParameter("id"));
+        String x = request.getParameter("id");
+        int id = Integer.parseInt(x);
         GioHang[] gioHangs = gioHangDAO.LayDanhSach(id);
         request.setAttribute("data", gioHangs);
         RequestDispatcher dispatcher = request.getRequestDispatcher("Site/GioHang/index.jsp");

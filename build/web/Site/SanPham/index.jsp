@@ -1,5 +1,9 @@
+<%@page import="DTO.KhachHang"%>
 <%@page import="DTO.SanPham"%>
-<% SanPham[] sanPhams = (SanPham[]) request.getAttribute("data"); %>
+<% 
+    SanPham[] sanPhams = (SanPham[]) request.getAttribute("data"); 
+    KhachHang khachHang = (KhachHang)request.getAttribute("KhachHang");
+%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <jsp:include page="../SharedLayout/header.jsp"/>
 <div class="product">
@@ -7,11 +11,11 @@
         <jsp:include page="../SharedLayout/menu_left.jsp"/>
 
         <div class="col-md-9 product1">
-            <div class=" bottom-product">
+            <div class="bottom-product">
                 <%for (SanPham item : sanPhams) { %>
                 <div class="col-md-4 bottom-cd simpleCart_shelfItem">
                     <div class="product-at ">
-                        <a href="/QuanLyBanHang/chi-tiet-san-pham?id=<%= item.maSP%>"><img class="img-responsive" src="Contents/Upload/<%= item.hinhAnh%>" style="width: 285px; height: 290px;" alt="">
+                        <a href="/QuanLyBanHang/them-gio-hang?id=<%= item.maSP%>"><img class="img-responsive" src="Contents/Upload/<%= item.hinhAnh%>" style="width: 285px; height: 290px;" alt="">
                             <div class="pro-grid">
                                 <span class="buy-in">Buy Now</span>
                             </div>
@@ -19,7 +23,7 @@
                     </div>
                     <p class="tun"><%= item.tenSP%></p>
                     <p class="tun"><%= item.moTa%></p>
-                    <a href="#" class="item_add"><p class="number item_price"><i> </i><%= (int)item.donGia %> VND</p></a>						
+                    <a href="#" data-id="<%= item.maSP%>" class="item_add btnAddSanPham"><p class="number item_price"><i> </i><%= (int)item.donGia %> VND</p></a>						
                 </div> 
                 <%}%>
                 <div class="clearfix"> </div>
@@ -47,6 +51,28 @@
 <script>
     $(".hrefTag").click(function (e) {
         e.preventDefault();
+    });
+    
+    $("body").delegate(".btnAddSanPham", "click", function(e) {
+        e.preventDefault();
+        var btn = $(this);
+        var id = btn.data("id");
+        $.ajax({
+            url: "/QuanLyBanHang/them-gio-hang",
+            method: "Post",
+            data: { id:id },
+            success:function(result) {
+                if(result === "true")
+                {
+                    alert("Đặt hàng thành công!");
+                    location.href="/QuanLyBanHang/gio-hang?id=" + <%= khachHang != null ? khachHang.id : 0 %>;
+                }
+                else
+                {
+                    alert("Đặt hàng thất bại. Bạn phải đăng nhập trước khi đặt hàng!");
+                }
+            }
+        });
     });
 </script>
 
