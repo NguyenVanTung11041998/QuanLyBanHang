@@ -46,7 +46,7 @@
             <div class="header-top">
                 <div class="container">
                     <div class="search">
-                        <form>
+                        <form action="/QuanLyBanHang/tim-kiem-san-pham">
                             <input type="text" value="Search " onfocus="this.value = '';" onblur="if (this.value == '') {
                                         this.value = 'Search';
                                     }">

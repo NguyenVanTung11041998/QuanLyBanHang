@@ -15,7 +15,7 @@
                 <%for (SanPham item : sanPhams) { %>
                 <div class="col-md-4 bottom-cd simpleCart_shelfItem">
                     <div class="product-at ">
-                        <a href="/QuanLyBanHang/them-gio-hang?id=<%= item.maSP%>"><img class="img-responsive" src="Contents/Upload/<%= item.hinhAnh%>" style="width: 285px; height: 290px;" alt="">
+                        <a href="#" class="btnAddSanPham" data-id="<%= item.maSP%>"><img class="img-responsive" src="Contents/Upload/<%= item.hinhAnh%>" style="width: 285px; height: 290px;" alt="">
                             <div class="pro-grid">
                                 <span class="buy-in">Buy Now</span>
                             </div>
