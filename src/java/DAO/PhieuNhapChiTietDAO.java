@@ -8,9 +8,15 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import org.omg.CORBA.ORB;
 
 public class PhieuNhapChiTietDAO extends IPhieuNhapChiTietDAOPOA{
 
+    private ORB orb;
+
+    public void setOrb(ORB orb) {
+        this.orb = orb;
+    }
     @Override
     public PhieuNhapChiTiet[] LayDanhSach(int idPhieuNhap) {
         String query = "SELECT MaPN, PhieuNhapChiTiet.MaSP, SoLuongNhap, DonGiaNhap, TenSP FROM dbo.PhieuNhapChiTiet INNER JOIN dbo.SanPham ON SanPham.MaSP = PhieuNhapChiTiet.MaSP Where MaPN = ?";

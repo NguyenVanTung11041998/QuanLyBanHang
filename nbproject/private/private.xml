@@ -3,11 +3,8 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/D:/JavaWeb/QuanLyBanHang/web/Site/Home/index.jsp</file>
-            <file>file:/D:/JavaWeb/QuanLyBanHang/src/java/Controller/SanPham_DanhSachServlet.java</file>
-            <file>file:/D:/JavaWeb/QuanLyBanHang/src/java/Controller/GioHang_CreateServlet.java</file>
-            <file>file:/D:/JavaWeb/QuanLyBanHang/src/java/Controller/GioHangServlet.java</file>
-            <file>file:/D:/JavaWeb/QuanLyBanHang/web/Site/SanPham/index.jsp</file>
+            <file>file:/D:/JavaWeb/QuanLyBanHang/src/java/Client.java</file>
+            <file>file:/D:/JavaWeb/QuanLyBanHang/src/java/Server.java</file>
         </group>
     </open-files>
 </project-private>

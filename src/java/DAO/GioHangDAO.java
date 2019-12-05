@@ -8,8 +8,15 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import org.omg.CORBA.ORB;
 
 public class GioHangDAO extends IGioHangDAOPOA {
+
+    private ORB orb;
+
+    public void setOrb(ORB orb) {
+        this.orb = orb;
+    }
 
     @Override
     public GioHang[] LayDanhSach(int idKhachHang) {
@@ -67,7 +74,7 @@ public class GioHangDAO extends IGioHangDAOPOA {
         String query = "Delete GioHang Where Id = ?";
         try {
             PreparedStatement pre = DataProvider.getInstance().getConnection().prepareStatement(query);
-            pre.setInt(1, id);  
+            pre.setInt(1, id);
             int result = pre.executeUpdate();
             return result > 0;
         } catch (SQLException ex) {

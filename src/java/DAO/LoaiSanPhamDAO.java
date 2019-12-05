@@ -8,8 +8,14 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import org.omg.CORBA.ORB;
 
 public class LoaiSanPhamDAO extends ILoaiSanPhamDAOPOA {
+    private ORB orb;
+
+    public void setOrb(ORB orb) {
+        this.orb = orb;
+    }
     @Override
     public LoaiSanPham[] LayDanhSach() {
         String query = "Select MaLoaiSP, TenLoai, dbo.LoaiSanPham.MaDanhMuc, TenDanhMuc From LoaiSanPham Inner Join DanhMuc On LoaiSanPham.MaDanhMuc = DanhMuc.MaDanhMuc";

@@ -9,8 +9,15 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import org.omg.CORBA.ORB;
 
 public class HoaDonDAO extends IHoaDonDAOPOA {
+
+    private ORB orb;
+
+    public void setOrb(ORB orb) {
+        this.orb = orb;
+    }
 
     @Override
     public HoaDon[] LayDanhSach() {
@@ -116,8 +123,7 @@ public class HoaDonDAO extends IHoaDonDAOPOA {
         String query = "SELECT MaHD, NgayDat, IDKhachHang, TongTien, DaThanhToan, HoTen FROM dbo.HoaDon INNER JOIN dbo.KhachHang ON KhachHang.ID = HoaDon.IDKhachHang Where MaHD = ?";
         ResultSet data = DataProvider.getInstance().GetById(query, id);
         try {
-            while(data.next())
-            {
+            while (data.next()) {
                 HoaDon x = new HoaDon(data.getInt("MaHD"), data.getString("NgayDat"), data.getInt("IDKhachHang"), data.getFloat("TongTien"), data.getBoolean("DaThanhToan"), data.getString("HoTen"));
                 return x;
             }

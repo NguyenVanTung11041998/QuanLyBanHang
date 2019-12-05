@@ -8,8 +8,15 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import org.omg.CORBA.ORB;
 
-public class HoaDonChiTietDAO extends IHoaDonChiTietDAOPOA{
+public class HoaDonChiTietDAO extends IHoaDonChiTietDAOPOA {
+
+    private ORB orb;
+
+    public void setOrb(ORB orb) {
+        this.orb = orb;
+    }
 
     @Override
     public HoaDonChiTiet[] LayDanhSachHoaDonChiTiet(int idHoaDon) {
@@ -19,8 +26,7 @@ public class HoaDonChiTietDAO extends IHoaDonChiTietDAOPOA{
             PreparedStatement pre = DataProvider.getInstance().getConnection().prepareStatement(query);
             pre.setInt(1, idHoaDon);
             ResultSet data = pre.executeQuery();
-            while(data.next())
-            {
+            while (data.next()) {
                 HoaDonChiTiet x = new HoaDonChiTiet(data.getInt("MaHD"), data.getInt("MaSP"), data.getInt("SoLuongMua"), data.getFloat("DonGia"), data.getString("TenSP"));
                 hoaDonChiTiets.add(x);
             }
@@ -44,5 +50,5 @@ public class HoaDonChiTietDAO extends IHoaDonChiTietDAOPOA{
             Logger.getLogger(HoaDonChiTietDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
+
 }

@@ -57,7 +57,7 @@ public class PhieuNhap_CreateServlet extends HttpServlet {
             phieuNhapChiTietDAO.Create(phieuNhapChiTiet);
         }
         PrintWriter out = response.getWriter();
-        out.print("<script>alert(\"Thêm thành công\");  location.href=\"/QuanLyBanHang/phieu-nhap\";</script>");
+        out.print("<script>alert(\"Thêm thành công\"); location.href=\"/QuanLyBanHang/phieu-nhap\";</script>");
     }
 
     @Override

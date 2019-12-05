@@ -8,8 +8,14 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import org.omg.CORBA.ORB;
 
 public class DanhMucDAO extends IDanhMucDAOPOA {
+    private ORB orb;
+
+    public void setOrb(ORB orb) {
+        this.orb = orb;
+    }
     @Override
     public DanhMuc[] LayDanhSach() {
         String query = "Select * From DanhMuc";

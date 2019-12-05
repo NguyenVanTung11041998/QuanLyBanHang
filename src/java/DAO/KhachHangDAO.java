@@ -8,8 +8,15 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import org.omg.CORBA.ORB;
 
 public class KhachHangDAO extends IKhachHangDAOPOA {
+
+    private ORB orb;
+
+    public void setOrb(ORB orb) {
+        this.orb = orb;
+    }
 
     @Override
     public KhachHang[] LayDanhSach() {
@@ -68,7 +75,7 @@ public class KhachHangDAO extends IKhachHangDAOPOA {
         String query = "Delete KhachHang Where ID = ?";
         try {
             PreparedStatement pre = DataProvider.getInstance().getConnection().prepareStatement(query);
-            pre.setInt(1, id);  
+            pre.setInt(1, id);
             int result = pre.executeUpdate();
             return result > 0;
         } catch (SQLException ex) {
@@ -97,8 +104,7 @@ public class KhachHangDAO extends IKhachHangDAOPOA {
         String query = "Select * From KhachHang Where ID = ?";
         ResultSet data = DataProvider.getInstance().GetById(query, id);
         try {
-            while(data.next())
-            {
+            while (data.next()) {
                 KhachHang x = new KhachHang(data.getInt("ID"), data.getString("Email"), data.getString("MatKhau"), data.getString("HoTen"), data.getString("DiaChi"), data.getString("SoDT"));
                 return x;
             }
@@ -116,8 +122,7 @@ public class KhachHangDAO extends IKhachHangDAOPOA {
             pre.setString(1, email);
             pre.setString(2, matKhau);
             ResultSet data = pre.executeQuery();
-            while (data.next()) 
-            {
+            while (data.next()) {
                 KhachHang x = new KhachHang(data.getInt("ID"), data.getString("Email"), data.getString("MatKhau"), data.getString("HoTen"), data.getString("DiaChi"), data.getString("SoDT"));
                 return x;
             }

@@ -8,9 +8,14 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import org.omg.CORBA.ORB;
 
 public class NhaSanXuatDAO extends INhaSanXuatDAOPOA {
+    private ORB orb;
 
+    public void setOrb(ORB orb) {
+        this.orb = orb;
+    }
     @Override
     public NhaSanXuat[] LayDanhSach() {
         ArrayList<NhaSanXuat> nhaSanXuats = new ArrayList<>();
