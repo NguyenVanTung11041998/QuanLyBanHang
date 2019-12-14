@@ -58,9 +58,9 @@
             <div class="price-details"> 
                 <h3>Chi tiết giá</h3>
                 <span>Số tiền</span>
-                <span class="total1"><%= tongTien%> VND</span>
+                <span class="total" id="totalSanPham"><%= tongTien%> VND</span>
                 <span>Thuế VAT</span>
-                <span class="total1">0%</span>
+                <span class="total">0%</span>
                 <div class="clearfix"></div>
             </div>
             <ul class="total_price">
@@ -117,7 +117,7 @@
             success: function (result) {
                 if (result === "true")
                 {
-                    alert("Sửa thành công!");
+                    alert("Đặt hàng thành công!");
                     location.href = "/QuanLyBanHang/gio-hang?id=" + <%= khachHang != null ? khachHang.id : 0%>;
                 }
                 else
@@ -137,12 +137,12 @@
             success: function (result) {
                 if (result === "true")
                 {
-                    alert("Sửa thành công!");
+                    alert("Đặt thành công!");
                     location.href = "/QuanLyBanHang/gio-hang?id=" + <%= khachHang != null ? khachHang.id : 0%>;
                 }
                 else
                 {
-                    alert("Đặt hàng thất bại. Bạn phải đăng nhập trước khi đặt hàng!");
+                    alert("Đặt hàng thất bại. Bạn phải có ít nhất một mặt hàng!");
                 }
             }
         });

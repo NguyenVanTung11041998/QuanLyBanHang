@@ -93,7 +93,7 @@
                         <li><a data-content="fashion"  href="#0">Mô tả</a></li>
                         <li><a data-content="cinema" href="#0" >Addtional Informatioan</a></li>
                         <li><a data-content="television" href="#0" class="selected ">Reviews (1)</a></li>
-                        <li><a href="#" class="add-cart item_add btn btn-warning">Thêm vào giỏ</a></li>
+                        <li><a href="#" class="add-cart item_add btn btn-warning btnAddSanPham" data-id="<%= sanPham.maSP %>">Thêm vào giỏ</a></li>
                     </ul> 
                 </nav>
                 <ul class="cd-tabs-content">

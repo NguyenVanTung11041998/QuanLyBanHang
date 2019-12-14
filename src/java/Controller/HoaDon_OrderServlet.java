@@ -41,6 +41,12 @@ public class HoaDon_OrderServlet extends HttpServlet {
         hoaDonDAO.Create(x);
         x = hoaDonDAO.GetHoaDonCuoiCungTheoKhachHang(khachHang.id);
         GioHang[] gioHangs = gioHangDAO.LayDanhSach(khachHang.id);
+        PrintWriter out = response.getWriter();
+        if(gioHangs.length == 0)
+        {
+            out.print("false");
+            return;
+        }
         for(GioHang item : gioHangs)
         {
             SanPham sanPham = sanPhamDAO.GetById(item.maSP);
@@ -48,7 +54,6 @@ public class HoaDon_OrderServlet extends HttpServlet {
             hoaDonChiTietDAO.Insert(hoaDonChiTiet);
             gioHangDAO.Delete(item.id);
         }
-        PrintWriter out = response.getWriter();
         out.print("true");
     }
 
