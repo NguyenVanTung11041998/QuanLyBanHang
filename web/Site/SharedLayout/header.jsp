@@ -46,10 +46,10 @@
             <div class="header-top">
                 <div class="container">
                     <div class="search">
-                        <form action="/QuanLyBanHang/tim-kiem-san-pham">
+                        <form method="Get" action="/QuanLyBanHang/trang-chu">
                             <input type="text" value="Search " onfocus="this.value = '';" onblur="if (this.value == '') {
                                         this.value = 'Search';
-                                    }">
+                                    }" name="txtSearch">
                             <input type="submit" value="Go">
                         </form>
                     </div>

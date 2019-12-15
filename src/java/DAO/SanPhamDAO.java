@@ -95,7 +95,7 @@ public class SanPhamDAO extends ISanPhamDAOPOA {
 
     @Override
     public SanPham[] TimKiem(String search) {
-        ResultSet data = DataProvider.getInstance().GetDataSearch("Select * From SanPham Where TenSP LIKE ?", search);
+        ResultSet data = DataProvider.getInstance().GetData("Select * From SanPham Where TenSP LIKE N'%" + search + "%'");
         ArrayList<SanPham> sanPhams = new ArrayList<>();
         try {
             while (data.next()) {

@@ -3,7 +3,8 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
 <%  SanPhamDAO sanPhamDAO = new SanPhamDAO();
-    SanPham[] sanPhams = sanPhamDAO.GetListSanPhamMoiNhat(); %>
+    String search = request.getParameter("txtSearch");
+    SanPham[] sanPhams = search == null ? sanPhamDAO.GetListSanPhamMoiNhat() : sanPhamDAO.TimKiem(search); %>
 <jsp:include page="../SharedLayout/header.jsp"/>
 <jsp:include page="../SharedLayout/banner.jsp"/>
 <!--content-->
