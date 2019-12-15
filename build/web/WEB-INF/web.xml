@@ -172,6 +172,10 @@
         <servlet-name>HoaDon_PayServlet</servlet-name>
         <servlet-class>Admin.HoaDon_PayServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>KhachHang_Servlet</servlet-name>
+        <servlet-class>Admin.KhachHang_Servlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>dispatcher</servlet-name>
         <url-pattern>*.htm</url-pattern>
@@ -335,6 +339,10 @@
     <servlet-mapping>
         <servlet-name>HoaDon_PayServlet</servlet-name>
         <url-pattern>/HoaDon_PayServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>KhachHang_Servlet</servlet-name>
+        <url-pattern>/KhachHang_Servlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

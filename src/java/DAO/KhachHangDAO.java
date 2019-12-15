@@ -30,7 +30,7 @@ public class KhachHangDAO extends IKhachHangDAOPOA {
         } catch (SQLException ex) {
             Logger.getLogger(KhachHangDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
-        return (KhachHang[]) khachHangs.toArray();
+        return khachHangs.toArray(new KhachHang[khachHangs.size()]);
     }
 
     @Override

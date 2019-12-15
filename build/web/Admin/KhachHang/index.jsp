@@ -1,3 +1,4 @@
+<%@page import="DTO.KhachHang"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <jsp:include page="../SharedLayout/header.jsp"/>
 
@@ -41,15 +42,17 @@
                     </tr>
                 </thead>
                 <tbody>
-
+                    <% KhachHang[] khachHangs = (KhachHang[]) request.getAttribute("data");
+                        int i = 0;
+                        for (KhachHang item : khachHangs) {%> 
                     <tr>
-                        <td>1</td>
-                        <td>Tùng đẹp trai</td>
-                        <td>Hà Tây</td>
-                        <td>0354540505</td>
-                        <td>tungktpm1@gmail.com</td>
+                        <td><%=++i%></td>
+                        <td><%= item.hoTen %></td>
+                        <td><%= item.email %></td>
+                        <td><%= item.diaChi %></td>
+                        <td><%= item.soDT %></td>
                     </tr>
-
+                    <%}%>
                 </tbody>
             </table>
 
